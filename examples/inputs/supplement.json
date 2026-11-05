@@ -6,5 +6,7 @@
     "hard_requirement": true
   },
   "world_patch": {},
-  "expected_task_status": "completed"
+  "expected_task_status": "completed",
+  "expected_save_status": "saved",
+  "expected_draft_count": 1
 }

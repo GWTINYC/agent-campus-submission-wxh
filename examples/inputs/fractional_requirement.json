@@ -1,0 +1,12 @@
+{
+  "request": {
+    "request_id": "request-fractional_requirement",
+    "material_id": "M01",
+    "requested_slot": "2026-11-06T18:00:00.500000+08:00",
+    "hard_requirement": true
+  },
+  "world_patch": {},
+  "expected_task_status": "needs_confirmation",
+  "expected_save_status": "saved",
+  "expected_draft_count": 1
+}

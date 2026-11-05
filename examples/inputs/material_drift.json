@@ -1,0 +1,16 @@
+{
+  "request": {
+    "request_id": "request-material_drift",
+    "material_id": "M01",
+    "requested_slot": "2026-11-06T18:00:00+08:00",
+    "hard_requirement": true
+  },
+  "world_patch": {
+    "faults": {
+      "material_changed_on_save": true
+    }
+  },
+  "expected_task_status": "blocked",
+  "expected_save_status": "failed",
+  "expected_draft_count": 0
+}

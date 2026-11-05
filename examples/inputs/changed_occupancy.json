@@ -13,5 +13,7 @@
       }
     ]
   },
-  "expected_task_status": "completed"
+  "expected_task_status": "completed",
+  "expected_save_status": "saved",
+  "expected_draft_count": 1
 }

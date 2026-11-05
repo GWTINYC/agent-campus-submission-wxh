@@ -117,8 +117,10 @@ class AgentTests(unittest.TestCase):
     def test_model_cannot_inject_confirmation(self):
         malicious = action('save_draft', 'override', slot=S19)
         malicious['arguments']['confirmed'] = True
-        report = self.execute(provider=ScriptedProvider([malicious]))
-        self.assertEqual(report['result']['stop_reason'], 'model_error')
+        report = self.execute(provider=ScriptedProvider([malicious, action('finish', 'Rejected unsafe proposal')]))
+        self.assertEqual(report['result']['task_status'], 'incomplete')
+        self.assertEqual(report['trace'][0]['result']['error'], 'invalid_action')
+        self.assertEqual(report['tool_calls'], 0)
         self.assertEqual(self.store.count(), 0)
 
     def test_save_requires_review_and_availability_query(self):
@@ -134,8 +136,9 @@ class AgentTests(unittest.TestCase):
                     action('save_draft', 'invalid repeat', slot='2026-11-08T18:00:00+08:00'),
                     action('finish', 'done')]
         report = self.execute(provider=ScriptedProvider(sequence))
-        self.assertEqual(report['result']['save_status'], 'saved')
-        self.assertIsNotNone(report['result']['draft_id'])
+        self.assertEqual(report['result']['save_status'], 'failed')
+        self.assertEqual(report['result']['task_status'], 'failed')
+        self.assertIsNotNone(report['result']['persisted_draft'])
         self.assertEqual(self.store.count(), 1)
         self.assertEqual(report['result']['error']['error'], 'slot_not_available')
 
@@ -245,7 +248,7 @@ class ProviderTests(unittest.TestCase):
         value = {'id': 'synthetic-response', 'model': 'deepseek-flash', 'usage': {'total_tokens': 12},
                  'choices': [{'message': {'content': json.dumps(action('finish', 'Observed tool failure'))}}]}
         context = {'request': {}, 'observations': [{'tool': 'save_draft', 'result': {'ok': False}}]}
-        with patch('urllib.request.urlopen', return_value=io.BytesIO(json.dumps(value).encode())) as transport:
+        with patch('src.providers.open_model_request', return_value=io.BytesIO(json.dumps(value).encode())) as transport:
             provider = DeepSeekProvider()
             self.assertEqual(provider.choose(context)['action'], 'finish')
             body = json.loads(transport.call_args.args[0].data)
@@ -257,7 +260,7 @@ class ProviderTests(unittest.TestCase):
     @patch.dict(os.environ, {'DEEPSEEK_API_KEY': 'test-not-a-secret'}, clear=True)
     def test_blank_json_is_model_error(self):
         data = {'choices': [{'message': {'content': '   '}}]}
-        with patch('urllib.request.urlopen', return_value=io.BytesIO(json.dumps(data).encode())):
+        with patch('src.providers.open_model_request', return_value=io.BytesIO(json.dumps(data).encode())):
             with self.assertRaises(ModelError):
                 DeepSeekProvider().choose({})
 

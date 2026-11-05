@@ -12,3 +12,4 @@ jobs:
           python-version: '3.12'
       - run: python -m scripts.verify
       - run: python -m scripts.evaluate --provider mock
+      - run: python -m scripts.adversarial

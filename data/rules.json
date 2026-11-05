@@ -1,6 +1,6 @@
 {
-  "version": "synthetic-rules-2026-11-05-v1",
-  "required_fields": ["title", "channel", "rights_status"],
+  "version": "synthetic-rules-2026-11-05-v2",
+  "required_fields": ["title", "channel", "rights_status", "risk_tags"],
   "blocked_tags": ["prohibited_content"],
   "manual_review_tags": ["unsupported_claim"]
 }

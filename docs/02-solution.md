@@ -15,6 +15,8 @@ flowchart TD
 
 每轮模型收到原始请求、截至当前的完整工具观察和剩余步数。它输出 action、arguments 和一句简短、可核对的 reason。程序校验后执行一个工具，将结果传给下一轮模型。实际下一步动作再写入前一条 Trace 的 next_action，不提前编造决策日志。
 
+可解析但不合协议的动作一律不执行，记录 invalid_action 并把校验错误作为 action_validation 观察反馈给模型。模型可修正下一步或停止；纠错占用同一总步数预算。无法解析的模型响应或网络错误仍明确返回 model_error，不自动切换 Mock。无效动作不计为业务工具调用。
+
 输出格式采用 JSON 动作协议，而非框架原生函数调用对象；它仍由真实模型逐步选择动作、工具执行后再观察调整。控制循环只规定动作白名单、状态边界和步数，不替模型选择业务动作。MockProvider 的固定分支明确只作为离线模拟。
 
 ## 工具职责
@@ -27,7 +29,7 @@ flowchart TD
 | save_draft | slot | 校验审核、查询及最新冲突；数据库事务保存或更新 |
 | finish | 无业务参数 | 模型结束决策；程序按工具事实生成结果，不接受模型自报保存成功 |
 
-所有动作参数统一包含可空的 source、slot；无关参数不改变原请求，也不能用于批准风险或修改硬性要求。确认只来自可信 CLI 请求的 confirmed_slot。
+所有动作参数统一包含可空的 source、slot；按动作严格校验用途，拒绝夹带无关参数、确认字段或发布动作。确认只来自可信 CLI 请求的 confirmed_slot。
 
 ## 已实现的动态路径
 
@@ -42,11 +44,13 @@ flowchart TD
 
 ## 存储、确认与一致性
 
-需求指纹对标准化后的 material_id、requested_slot、hard_requirement、confirmed_slot 计算 SHA-256。传输请求 ID 单独绑定指纹，防止同 ID 不同需求混写。确认属于新需求修订，需要新请求 ID；当前版本保留旧的待确认草稿，不自动归档，属于已知限制。
+需求指纹对标准化后的 material_id、requested_slot、hard_requirement、confirmed_slot 计算 SHA-256。请求进入时即在事务中绑定请求 ID，包括之后失败的运行，防止同 ID 不同需求混写。确认属于新需求修订，需要新请求 ID；当前版本保留旧的待确认草稿，不自动归档，属于已知限制。
 
 SQLite BEGIN IMMEDIATE、需求指纹主键和“频道 + effective_slot”唯一索引，共同约束重复和并发冲突。待确认草稿不持有 effective_slot，不预占资源。占用发生变化时，重复请求重新查询并更新同一草稿；不会新增第二份相同需求草稿。
 
-最终状态由实际工具状态生成；模型的 finish 或 reason 不是保存证据。执行上限与保存结果分别呈现，达到上限不抹掉此前真正保存的成果。
+审核和草稿保存 source_revision，绑定该素材主资料、归档及规则的内容摘要。每次操作和最终返回前检测变化；旧证明失效时标记 invalidated 并释放时段。读取归档仅补缺项，保留资料矛盾及全部风险信号；未知风险、无效字段不会直接通过。
+
+最终状态由当前审核证明和数据库实际读回生成。save_status 是最新尝试，persisted_draft 是实际持久化内容；新尝试失败时 task_status/save_status 为 failed，同时保留旧草稿。模型的 finish 或 reason 不是保存证据。达到步数上限返回 incomplete，仍展示真实保存回执和持久化状态。
 
 ## 模型与依赖
 

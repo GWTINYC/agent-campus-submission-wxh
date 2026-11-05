@@ -6,5 +6,7 @@
     "hard_requirement": true
   },
   "world_patch": {},
-  "expected_task_status": "blocked"
+  "expected_task_status": "blocked",
+  "expected_save_status": "not_attempted",
+  "expected_draft_count": 0
 }

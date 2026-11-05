@@ -15,7 +15,7 @@ ACTION_SCHEMA = {
                 'slot': {'type': ['string', 'null']},
             }, 'required': ['source', 'slot'],
         },
-        'reason': {'type': 'string', 'description': 'One short observable decision reason, no chain of thought.'},
+        'reason': {'type': 'string', 'maxLength': 300, 'description': 'One short observable decision reason, no chain of thought.'},
     }, 'required': ['action', 'arguments', 'reason'],
 }
 
@@ -28,7 +28,10 @@ def canonical_slot(value):
         raise ValueError('slot must include UTC offset, e.g. +08:00')
     # Normalize equivalent instants so changing the offset cannot bypass occupancy.
     from datetime import timezone, timedelta
-    return dt.astimezone(timezone(timedelta(hours=8))).isoformat(timespec='seconds')
+    try:
+        return dt.astimezone(timezone(timedelta(hours=8))).isoformat()
+    except OverflowError:
+        raise ValueError('slot is outside the supported datetime range') from None
 
 
 def validate_request(value):
@@ -42,6 +45,9 @@ def validate_request(value):
             raise ValueError(f'{key} is required and must be a nonempty string')
     if type(value.get('hard_requirement', True)) is not bool:
         raise ValueError('hard_requirement must be a boolean')
+    if value.get('confirmed_slot') is not None and (
+            not isinstance(value['confirmed_slot'], str) or not value['confirmed_slot'].strip()):
+        raise ValueError('confirmed_slot must be null or a nonempty ISO 8601 string')
     return {
         'request_id': value['request_id'], 'material_id': value['material_id'],
         'requested_slot': canonical_slot(value.get('requested_slot')),
@@ -67,7 +73,19 @@ def validate_action(value):
         raise ValueError('unknown material source')
     if args['slot'] is not None:
         args['slot'] = canonical_slot(args['slot'])
+    if len(value['reason']) > 300:
+        raise ValueError('decision reason must be at most 300 characters')
+    if value['action'] == 'read_material' and args['slot'] is not None:
+        raise ValueError('read_material does not accept slot')
+    if value['action'] == 'save_draft' and (args['source'] is not None or args['slot'] is None):
+        raise ValueError('save_draft requires slot and does not accept source')
+    if value['action'] in ('check_rules', 'query_slots', 'finish') and any(v is not None for v in args.values()):
+        raise ValueError('this action does not accept business arguments')
     return value
+
+
+def revision(value):
+    return hashlib.sha256(json.dumps(value, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
 
 
 def action(name, reason, source=None, slot=None):

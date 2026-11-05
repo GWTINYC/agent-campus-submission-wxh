@@ -5,23 +5,26 @@ import platform
 import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
-from src.agent import run
+from src.agent import CODE_REVISION, run
 from src.cli import ROOT, load_case
 from src.providers import create_provider
 from src.storage import DraftStore
+from scripts.oracles import report_checks
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--provider', choices=['mock', 'openai', 'deepseek'], default='mock')
     parser.add_argument('--cases', nargs='+', default=['normal', 'missing', 'supplement', 'risk', 'manual_review',
-                        'conflict', 'confirmed', 'save_failure', 'query_retry', 'race', 'no_slots', 'changed_occupancy'])
+                        'conflict', 'confirmed', 'save_failure', 'query_retry', 'race', 'no_slots', 'changed_occupancy',
+                        'unknown_risk', 'invalid_metadata', 'archive_conflict', 'material_drift', 'prompt_injection',
+                        'fractional_requirement'])
     parser.add_argument('--timeout', type=float, default=90)
     args = parser.parse_args()
     provider = create_provider(args.provider, args.timeout)
     output = ROOT / 'examples' / args.provider
     output.mkdir(parents=True, exist_ok=True)
-    summary = {'provider': provider.name, 'model': provider.model, 'evidence': provider.evidence,
+    summary = {'provider': provider.name, 'model': provider.model, 'evidence': provider.evidence, 'code_revision': CODE_REVISION,
                'ran_at': datetime.now(timezone.utc).isoformat(), 'python': platform.python_version(), 'cases': []}
     for name in args.cases:
         case, world, rules = load_case(ROOT / 'examples/inputs' / (name + '.json'))
@@ -32,9 +35,10 @@ def main():
                 report['database_draft_count'] = store.count()
                 (output / (name + '.json')).write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
                 actual = report['result']['task_status']
-                passed = actual == case['expected_task_status']
+                checks = report_checks(case, world, report, store)
+                passed = all(checks.values())
                 summary['cases'].append({'case': name, 'expected': case['expected_task_status'],
-                                         'actual': actual, 'passed': passed, 'trace': name + '.json'})
+                                         'actual': actual, 'passed': passed, 'checks': checks, 'trace': name + '.json'})
                 print(f'{name}: {actual}; expected={case["expected_task_status"]}; passed={passed}', flush=True)
                 if name in ('normal', 'conflict'):
                     repeated = run(case['request'], world, rules, store, provider)

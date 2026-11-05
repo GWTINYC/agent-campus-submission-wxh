@@ -1,0 +1,21 @@
+{
+  "request": {
+    "request_id": "request-invalid_metadata",
+    "material_id": "M01",
+    "requested_slot": "2026-11-06T18:00:00+08:00",
+    "hard_requirement": true
+  },
+  "world_patch": {
+    "materials": {
+      "M01": {
+        "title": "格式错误",
+        "channel": "video",
+        "rights_status": "licensed",
+        "risk_tags": null
+      }
+    }
+  },
+  "expected_task_status": "needs_information",
+  "expected_save_status": "not_attempted",
+  "expected_draft_count": 0
+}

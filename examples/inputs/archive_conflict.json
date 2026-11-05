@@ -1,0 +1,26 @@
+{
+  "request": {
+    "request_id": "request-archive_conflict",
+    "material_id": "M01",
+    "requested_slot": "2026-11-06T18:00:00+08:00",
+    "hard_requirement": true
+  },
+  "world_patch": {
+    "materials": {
+      "M01": {
+        "title": "待补齐素材",
+        "channel": "video",
+        "risk_tags": []
+      }
+    },
+    "archive": {
+      "M01": {
+        "rights_status": "licensed",
+        "channel": "other"
+      }
+    }
+  },
+  "expected_task_status": "needs_confirmation",
+  "expected_save_status": "not_attempted",
+  "expected_draft_count": 0
+}

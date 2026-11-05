@@ -20,6 +20,52 @@ class DraftStore:
     def close(self):
         self.db.close()
 
+    def register_request(self, request):
+        """Bind identity before the first model/tool call, including failed runs."""
+        key = fingerprint(request)
+        try:
+            self.db.execute('BEGIN IMMEDIATE')
+            row = self.db.execute('SELECT fingerprint FROM requests WHERE request_id=?',
+                                  (request['request_id'],)).fetchone()
+            if row and row[0] != key:
+                self.db.rollback()
+                return {'ok': False, 'error': 'idempotency_conflict', 'retryable': False}
+            self.db.execute('INSERT OR IGNORE INTO requests VALUES (?,?)', (request['request_id'], key))
+            self.db.commit()
+            return {'ok': True}
+        except sqlite3.Error:
+            self.db.rollback()
+            return {'ok': False, 'error': 'storage_error', 'retryable': False}
+
+    def get(self, request):
+        row = self.db.execute('SELECT payload FROM drafts WHERE fingerprint=?', (fingerprint(request),)).fetchone()
+        return json.loads(row[0]) if row else None
+
+    def invalidate(self, material_id, current_revision=None, reason='review_not_approved', request=None):
+        """Revoke stale proofs and release reservations; keep the historical draft row."""
+        changed = 0
+        try:
+            self.db.execute('BEGIN IMMEDIATE')
+            for key, payload in self.db.execute('SELECT fingerprint, payload FROM drafts').fetchall():
+                draft = json.loads(payload)
+                if request is not None and key != fingerprint(request):
+                    continue
+                if draft.get('material_id') != material_id or draft.get('draft_status') == 'invalidated':
+                    continue
+                if current_revision is not None and draft.get('source_revision') == current_revision:
+                    continue
+                if draft.get('effective_slot'):
+                    draft['previous_effective_slot'] = draft['effective_slot']
+                draft.update(effective_slot=None, draft_status='invalidated', invalidation_reason=reason)
+                self.db.execute('UPDATE drafts SET effective_slot=NULL, payload=? WHERE fingerprint=?',
+                                (json.dumps(draft, ensure_ascii=False), key))
+                changed += 1
+            self.db.commit()
+            return changed
+        except sqlite3.Error:
+            self.db.rollback()
+            raise
+
     def occupied(self, channel, request):
         rows = self.db.execute('SELECT effective_slot FROM drafts WHERE channel=? AND fingerprint<>? '
                                'AND effective_slot IS NOT NULL', (channel, fingerprint(request)))
@@ -56,7 +102,7 @@ class DraftStore:
             self.db.execute('INSERT INTO drafts VALUES (?,?,?,?,?)',
                             (key, draft['draft_id'], draft['channel'], draft['effective_slot'],
                              json.dumps(draft, ensure_ascii=False)))
-            self.db.execute('INSERT INTO requests VALUES (?,?)', (request['request_id'], key))
+            self.db.execute('INSERT OR IGNORE INTO requests VALUES (?,?)', (request['request_id'], key))
             self.db.commit()
             return {'ok': True, 'save_status': 'saved', 'draft': draft}
         except sqlite3.IntegrityError:

@@ -10,5 +10,7 @@
       "race_on_save": true
     }
   },
-  "expected_task_status": "needs_confirmation"
+  "expected_task_status": "needs_confirmation",
+  "expected_save_status": "saved",
+  "expected_draft_count": 1
 }

@@ -10,5 +10,7 @@
       "save_draft": "always"
     }
   },
-  "expected_task_status": "failed"
+  "expected_task_status": "failed",
+  "expected_save_status": "failed",
+  "expected_draft_count": 0
 }

@@ -2,6 +2,7 @@
   "provider": "mock",
   "model": "deterministic-flow-simulator",
   "evidence": "flow_only",
+  "code_revision": "55941029fb1d3df80e46d4ff41292b29a2a5f7d221181e9690bf633dd3521703",
   "started_from": "immutable_user_request",
   "request": {
     "request_id": "request-missing",
@@ -13,13 +14,16 @@
   "max_steps": 12,
   "model_calls": 4,
   "tool_calls": 3,
+  "preflight": {
+    "ok": true
+  },
   "model_error": null,
   "result": {
     "request_id": "request-missing",
     "material_id": "M02",
     "task_status": "needs_information",
     "review_status": "needs_information",
-    "status_reason": "素材信息不足，未保存排期。",
+    "status_reason": "资料缺失或格式无效，不能确认排期。",
     "risk_reasons": [],
     "missing_fields": [
       "rights_status"
@@ -32,6 +36,8 @@
     ],
     "save_status": "not_attempted",
     "draft_id": null,
+    "draft_status": null,
+    "persisted_draft": null,
     "error": {
       "tool": "read_material",
       "ok": false,
@@ -40,12 +46,13 @@
       "source": "archive"
     },
     "stop_reason": "model_finished",
+    "source_revision": "1d220c81c39fd7ed7be18ce072cb0b133481103318bbe928c99aff1602ed5f55",
     "published": false
   },
   "trace": [
     {
       "step": 1,
-      "at": "2026-11-05T04:41:23.591073+00:00",
+      "at": "2026-11-05T05:54:52.540869+00:00",
       "action": "read_material",
       "arguments": {
         "source": "primary",
@@ -62,13 +69,15 @@
         },
         "missing_fields": [
           "rights_status"
-        ]
+        ],
+        "field_conflicts": [],
+        "source_revision": "1d220c81c39fd7ed7be18ce072cb0b133481103318bbe928c99aff1602ed5f55"
       },
       "next_action": "check_rules"
     },
     {
       "step": 2,
-      "at": "2026-11-05T04:41:23.591073+00:00",
+      "at": "2026-11-05T05:54:52.542236+00:00",
       "action": "check_rules",
       "arguments": {
         "source": null,
@@ -81,13 +90,14 @@
         "risk_reasons": [],
         "missing_fields": [
           "rights_status"
-        ]
+        ],
+        "source_revision": "1d220c81c39fd7ed7be18ce072cb0b133481103318bbe928c99aff1602ed5f55"
       },
       "next_action": "read_material"
     },
     {
       "step": 3,
-      "at": "2026-11-05T04:41:23.591073+00:00",
+      "at": "2026-11-05T05:54:52.543919+00:00",
       "action": "read_material",
       "arguments": {
         "source": "archive",
@@ -104,7 +114,7 @@
     },
     {
       "step": 4,
-      "at": "2026-11-05T04:41:23.591073+00:00",
+      "at": "2026-11-05T05:54:52.544758+00:00",
       "action": "finish",
       "arguments": {
         "source": null,

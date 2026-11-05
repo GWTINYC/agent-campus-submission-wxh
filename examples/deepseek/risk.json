@@ -2,6 +2,7 @@
   "provider": "deepseek",
   "model": "deepseek-flash",
   "evidence": "real_model",
+  "code_revision": "55941029fb1d3df80e46d4ff41292b29a2a5f7d221181e9690bf633dd3521703",
   "started_from": "immutable_user_request",
   "request": {
     "request_id": "request-risk",
@@ -13,13 +14,16 @@
   "max_steps": 12,
   "model_calls": 3,
   "tool_calls": 2,
+  "preflight": {
+    "ok": true
+  },
   "model_error": null,
   "result": {
     "request_id": "request-risk",
     "material_id": "M04",
     "task_status": "blocked",
     "review_status": "blocked",
-    "status_reason": "素材存在阻断风险，未新增排期。",
+    "status_reason": "当前审核存在阻断风险，旧草稿已失效。",
     "risk_reasons": [
       "prohibited_content",
       "unlicensed_rights"
@@ -31,32 +35,35 @@
     "pending_items": [],
     "save_status": "not_attempted",
     "draft_id": null,
+    "draft_status": null,
+    "persisted_draft": null,
     "error": null,
     "stop_reason": "model_finished",
+    "source_revision": "42b732d5a039144bb2020c9ae479c7c433997b57c237dbe016897130005c94b3",
     "published": false
   },
   "trace": [
     {
       "step": 1,
-      "at": "2026-11-05T04:42:10.057481+00:00",
+      "at": "2026-11-05T05:55:16.576872+00:00",
       "action": "read_material",
       "arguments": {
         "source": "primary",
         "slot": null
       },
-      "reason": "Read primary material metadata first.",
+      "reason": "Read primary material to begin review.",
       "model_response": {
-        "id": "b805e11a-4665-49c9-a337-93313a3c4ddb",
+        "id": "743471f7-2ea8-47d4-a979-e26c197d8689",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 592,
-          "completion_tokens": 27,
-          "total_tokens": 619,
+          "prompt_tokens": 718,
+          "completion_tokens": 28,
+          "total_tokens": 746,
           "prompt_tokens_details": {
-            "cached_tokens": 384
+            "cached_tokens": 512
           },
-          "prompt_cache_hit_tokens": 384,
-          "prompt_cache_miss_tokens": 208
+          "prompt_cache_hit_tokens": 512,
+          "prompt_cache_miss_tokens": 206
         }
       },
       "result": {
@@ -70,31 +77,33 @@
             "prohibited_content"
           ]
         },
-        "missing_fields": []
+        "missing_fields": [],
+        "field_conflicts": [],
+        "source_revision": "42b732d5a039144bb2020c9ae479c7c433997b57c237dbe016897130005c94b3"
       },
       "next_action": "check_rules"
     },
     {
       "step": 2,
-      "at": "2026-11-05T04:42:10.990152+00:00",
+      "at": "2026-11-05T05:55:17.389251+00:00",
       "action": "check_rules",
       "arguments": {
         "source": null,
         "slot": null
       },
-      "reason": "Primary material shows unlicensed rights and prohibited_content risk tag.",
+      "reason": "Primary metadata read; rights unlicensed with prohibited_content risk tag requires rule review.",
       "model_response": {
-        "id": "786b2b33-cb7a-4154-96f6-5d457f5afefd",
+        "id": "67d66ed2-96b6-4778-8178-001a0070307f",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 673,
-          "completion_tokens": 33,
-          "total_tokens": 706,
+          "prompt_tokens": 846,
+          "completion_tokens": 37,
+          "total_tokens": 883,
           "prompt_tokens_details": {
-            "cached_tokens": 512
+            "cached_tokens": 640
           },
-          "prompt_cache_hit_tokens": 512,
-          "prompt_cache_miss_tokens": 161
+          "prompt_cache_hit_tokens": 640,
+          "prompt_cache_miss_tokens": 206
         }
       },
       "result": {
@@ -104,31 +113,32 @@
           "prohibited_content",
           "unlicensed_rights"
         ],
-        "missing_fields": []
+        "missing_fields": [],
+        "source_revision": "42b732d5a039144bb2020c9ae479c7c433997b57c237dbe016897130005c94b3"
       },
       "next_action": "finish"
     },
     {
       "step": 3,
-      "at": "2026-11-05T04:42:11.883070+00:00",
+      "at": "2026-11-05T05:55:18.272390+00:00",
       "action": "finish",
       "arguments": {
         "source": null,
         "slot": null
       },
-      "reason": "Rules blocked by prohibited_content and unlicensed rights; scheduling not permitted.",
+      "reason": "Rules check returned blocked due to prohibited_content and unlicensed rights; no draft can be saved.",
       "model_response": {
-        "id": "ad1c9ca1-e5c5-4900-8150-f01d43503edb",
+        "id": "12ed34de-caed-4898-843a-feb9ca1d44d0",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 732,
-          "completion_tokens": 34,
-          "total_tokens": 766,
+          "prompt_tokens": 946,
+          "completion_tokens": 39,
+          "total_tokens": 985,
           "prompt_tokens_details": {
-            "cached_tokens": 512
+            "cached_tokens": 768
           },
-          "prompt_cache_hit_tokens": 512,
-          "prompt_cache_miss_tokens": 220
+          "prompt_cache_hit_tokens": 768,
+          "prompt_cache_miss_tokens": 178
         }
       },
       "result": {

@@ -2,6 +2,7 @@
   "provider": "deepseek",
   "model": "deepseek-flash",
   "evidence": "real_model",
+  "code_revision": "55941029fb1d3df80e46d4ff41292b29a2a5f7d221181e9690bf633dd3521703",
   "started_from": "immutable_user_request",
   "request": {
     "request_id": "request-manual_review",
@@ -13,13 +14,16 @@
   "max_steps": 12,
   "model_calls": 3,
   "tool_calls": 2,
+  "preflight": {
+    "ok": true
+  },
   "model_error": null,
   "result": {
     "request_id": "request-manual_review",
     "material_id": "M05",
     "task_status": "needs_confirmation",
     "review_status": "needs_review",
-    "status_reason": "存在待确认事项；尚未完成排期确认。",
+    "status_reason": "存在待确认事项，尚未完成排期确认。",
     "risk_reasons": [
       "unsupported_claim"
     ],
@@ -28,36 +32,39 @@
     "suggested_slot": null,
     "effective_slot": null,
     "pending_items": [
-      "人工复核素材风险"
+      "人工复核风险或资料冲突"
     ],
     "save_status": "not_attempted",
     "draft_id": null,
+    "draft_status": null,
+    "persisted_draft": null,
     "error": null,
     "stop_reason": "model_finished",
+    "source_revision": "70ef6313ea7dca0f9ff0b02fa22d5e72f9873a5e85d2090b9f0f987133052917",
     "published": false
   },
   "trace": [
     {
       "step": 1,
-      "at": "2026-11-05T04:42:12.789609+00:00",
+      "at": "2026-11-05T05:55:19.422170+00:00",
       "action": "read_material",
       "arguments": {
         "source": "primary",
         "slot": null
       },
-      "reason": "Read primary metadata before review.",
+      "reason": "Read primary material metadata first.",
       "model_response": {
-        "id": "b99806a5-b7b0-4763-9b88-ca9ffb4979ca",
+        "id": "df5ae62a-b4a8-410f-ae71-b160b86eedf3",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 595,
+          "prompt_tokens": 721,
           "completion_tokens": 27,
-          "total_tokens": 622,
+          "total_tokens": 748,
           "prompt_tokens_details": {
-            "cached_tokens": 384
+            "cached_tokens": 512
           },
-          "prompt_cache_hit_tokens": 384,
-          "prompt_cache_miss_tokens": 211
+          "prompt_cache_hit_tokens": 512,
+          "prompt_cache_miss_tokens": 209
         }
       },
       "result": {
@@ -71,31 +78,33 @@
             "unsupported_claim"
           ]
         },
-        "missing_fields": []
+        "missing_fields": [],
+        "field_conflicts": [],
+        "source_revision": "70ef6313ea7dca0f9ff0b02fa22d5e72f9873a5e85d2090b9f0f987133052917"
       },
       "next_action": "check_rules"
     },
     {
       "step": 2,
-      "at": "2026-11-05T04:42:13.732531+00:00",
+      "at": "2026-11-05T05:55:20.299333+00:00",
       "action": "check_rules",
       "arguments": {
         "source": null,
         "slot": null
       },
-      "reason": "Primary material read; run authoritative review before scheduling.",
+      "reason": "Primary metadata read; next run authoritative rule review.",
       "model_response": {
-        "id": "c1ab543b-4e6c-4627-b899-08176c3c2b40",
+        "id": "d17c158b-9d23-4dce-884c-a06ef39234fa",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 676,
+          "prompt_tokens": 855,
           "completion_tokens": 31,
-          "total_tokens": 707,
+          "total_tokens": 886,
           "prompt_tokens_details": {
-            "cached_tokens": 512
+            "cached_tokens": 640
           },
-          "prompt_cache_hit_tokens": 512,
-          "prompt_cache_miss_tokens": 164
+          "prompt_cache_hit_tokens": 640,
+          "prompt_cache_miss_tokens": 215
         }
       },
       "result": {
@@ -104,31 +113,32 @@
         "risk_reasons": [
           "unsupported_claim"
         ],
-        "missing_fields": []
+        "missing_fields": [],
+        "source_revision": "70ef6313ea7dca0f9ff0b02fa22d5e72f9873a5e85d2090b9f0f987133052917"
       },
       "next_action": "finish"
     },
     {
       "step": 3,
-      "at": "2026-11-05T04:42:14.451988+00:00",
+      "at": "2026-11-05T05:55:21.116920+00:00",
       "action": "finish",
       "arguments": {
         "source": null,
         "slot": null
       },
-      "reason": "Rule check returned needs_review, requiring human review.",
+      "reason": "Rules returned needs_review due to unsupported_claim risk tag; concluding to request human review.",
       "model_response": {
-        "id": "ae3cc3d6-7dc5-4f5f-b2f3-1ea4d28e614c",
+        "id": "6b0102bd-637f-4e80-ba5f-bcc60fe7c35d",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 731,
-          "completion_tokens": 31,
-          "total_tokens": 762,
+          "prompt_tokens": 957,
+          "completion_tokens": 40,
+          "total_tokens": 997,
           "prompt_tokens_details": {
-            "cached_tokens": 512
+            "cached_tokens": 768
           },
-          "prompt_cache_hit_tokens": 512,
-          "prompt_cache_miss_tokens": 219
+          "prompt_cache_hit_tokens": 768,
+          "prompt_cache_miss_tokens": 189
         }
       },
       "result": {

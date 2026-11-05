@@ -2,6 +2,7 @@
   "provider": "deepseek",
   "model": "deepseek-flash",
   "evidence": "real_model",
+  "code_revision": "55941029fb1d3df80e46d4ff41292b29a2a5f7d221181e9690bf633dd3521703",
   "started_from": "immutable_user_request",
   "request": {
     "request_id": "request-conflict",
@@ -11,15 +12,18 @@
     "confirmed_slot": null
   },
   "max_steps": 12,
-  "model_calls": 5,
-  "tool_calls": 4,
+  "model_calls": 6,
+  "tool_calls": 5,
+  "preflight": {
+    "ok": true
+  },
   "model_error": null,
   "result": {
     "request_id": "request-conflict",
     "material_id": "M01",
     "task_status": "needs_confirmation",
     "review_status": "approved",
-    "status_reason": "存在待确认事项；尚未完成排期确认。",
+    "status_reason": "存在待确认事项，尚未完成排期确认。",
     "risk_reasons": [],
     "missing_fields": [],
     "requested_slot": "2026-11-06T18:00:00+08:00",
@@ -30,14 +34,29 @@
     ],
     "save_status": "existing",
     "draft_id": "draft-a6649ef5feb6f0aa",
+    "draft_status": "pending_confirmation",
+    "persisted_draft": {
+      "material_id": "M01",
+      "channel": "video",
+      "requested_slot": "2026-11-06T18:00:00+08:00",
+      "suggested_slot": "2026-11-06T19:00:00+08:00",
+      "effective_slot": null,
+      "confirmation_status": "pending",
+      "draft_status": "pending_confirmation",
+      "source_revision": "fe109449ff55c7a5aa1ab8008dab93b539e3466eda22ad4c3a74093115721db6",
+      "kind": "draft",
+      "review_status": "approved",
+      "draft_id": "draft-a6649ef5feb6f0aa"
+    },
     "error": null,
     "stop_reason": "model_finished",
+    "source_revision": "fe109449ff55c7a5aa1ab8008dab93b539e3466eda22ad4c3a74093115721db6",
     "published": false
   },
   "trace": [
     {
       "step": 1,
-      "at": "2026-11-05T04:42:20.033695+00:00",
+      "at": "2026-11-05T05:55:28.124115+00:00",
       "action": "read_material",
       "arguments": {
         "source": "primary",
@@ -45,17 +64,17 @@
       },
       "reason": "Read primary material metadata before review.",
       "model_response": {
-        "id": "df3f2bb2-7a3b-4acc-a11b-f4a66b2a0f11",
+        "id": "4cca406c-d67c-451d-836b-449291d4ff41",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 593,
+          "prompt_tokens": 719,
           "completion_tokens": 28,
-          "total_tokens": 621,
+          "total_tokens": 747,
           "prompt_tokens_details": {
-            "cached_tokens": 384
+            "cached_tokens": 512
           },
-          "prompt_cache_hit_tokens": 384,
-          "prompt_cache_miss_tokens": 209
+          "prompt_cache_hit_tokens": 512,
+          "prompt_cache_miss_tokens": 207
         }
       },
       "result": {
@@ -67,62 +86,101 @@
           "rights_status": "licensed",
           "risk_tags": []
         },
-        "missing_fields": []
+        "missing_fields": [],
+        "field_conflicts": [],
+        "source_revision": "fe109449ff55c7a5aa1ab8008dab93b539e3466eda22ad4c3a74093115721db6"
       },
       "next_action": "check_rules"
     },
     {
       "step": 2,
-      "at": "2026-11-05T04:42:20.956813+00:00",
+      "at": "2026-11-05T05:55:29.283849+00:00",
       "action": "check_rules",
       "arguments": {
         "source": null,
         "slot": null
       },
-      "reason": "Primary material read; checking authoritative review before scheduling.",
+      "reason": "Primary metadata read; now run authoritative review before scheduling.",
       "model_response": {
-        "id": "08f37722-f7de-477e-b493-c73ff22f7797",
+        "id": "167246b3-8de2-43d2-8f1a-fc9c9fdac9a2",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 667,
-          "completion_tokens": 31,
-          "total_tokens": 698,
+          "prompt_tokens": 841,
+          "completion_tokens": 32,
+          "total_tokens": 873,
           "prompt_tokens_details": {
-            "cached_tokens": 512
+            "cached_tokens": 640
           },
-          "prompt_cache_hit_tokens": 512,
-          "prompt_cache_miss_tokens": 155
+          "prompt_cache_hit_tokens": 640,
+          "prompt_cache_miss_tokens": 201
         }
       },
       "result": {
         "ok": true,
         "status": "approved",
         "risk_reasons": [],
-        "missing_fields": []
+        "missing_fields": [],
+        "source_revision": "fe109449ff55c7a5aa1ab8008dab93b539e3466eda22ad4c3a74093115721db6"
       },
       "next_action": "query_slots"
     },
     {
       "step": 3,
-      "at": "2026-11-05T04:42:21.936640+00:00",
+      "at": "2026-11-05T05:55:29.826214+00:00",
       "action": "query_slots",
       "arguments": {
         "source": null,
         "slot": null
       },
-      "reason": "Material read and rules approved; need available times for the requested slot.",
+      "reason": "Material approved; check availability for the requested slot.",
       "model_response": {
-        "id": "39338c73-ca39-4a77-98fd-bdaa8a65e1dd",
+        "id": "272f9cea-ec18-48e4-b702-af5a8b98635a",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 714,
-          "completion_tokens": 35,
-          "total_tokens": 749,
+          "prompt_tokens": 930,
+          "completion_tokens": 31,
+          "total_tokens": 961,
           "prompt_tokens_details": {
-            "cached_tokens": 512
+            "cached_tokens": 768
           },
-          "prompt_cache_hit_tokens": 512,
-          "prompt_cache_miss_tokens": 202
+          "prompt_cache_hit_tokens": 768,
+          "prompt_cache_miss_tokens": 162
+        }
+      },
+      "result": {
+        "ok": true,
+        "available": [
+          "2026-11-06T19:00:00+08:00",
+          "2026-11-06T20:00:00+08:00"
+        ],
+        "occupied": [
+          "2026-11-06T18:00:00+08:00"
+        ],
+        "channel": "video"
+      },
+      "next_action": "query_slots"
+    },
+    {
+      "step": 4,
+      "at": "2026-11-05T05:55:31.195395+00:00",
+      "action": "query_slots",
+      "arguments": {
+        "source": null,
+        "slot": null
+      },
+      "reason": "Requested 18:00 slot is occupied; re-query to confirm current availability before proposing an alternative.",
+      "model_response": {
+        "id": "7ba4d197-ad94-47fe-9aab-8dfcb0571d78",
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 1026,
+          "completion_tokens": 43,
+          "total_tokens": 1069,
+          "prompt_tokens_details": {
+            "cached_tokens": 892
+          },
+          "prompt_cache_hit_tokens": 892,
+          "prompt_cache_miss_tokens": 134
         }
       },
       "result": {
@@ -139,26 +197,26 @@
       "next_action": "save_draft"
     },
     {
-      "step": 4,
-      "at": "2026-11-05T04:42:22.775051+00:00",
+      "step": 5,
+      "at": "2026-11-05T05:55:32.315045+00:00",
       "action": "save_draft",
       "arguments": {
         "source": null,
         "slot": "2026-11-06T19:00:00+08:00"
       },
-      "reason": "Requested slot is occupied; saving earliest available alternative as pending proposal.",
+      "reason": "Requested slot occupied; saving earliest available time as pending proposal.",
       "model_response": {
-        "id": "b1ca9bb1-15d3-4353-9f51-1c69c57176f6",
+        "id": "2d6edbf9-c47a-4b6b-ab9c-0e64ea2e4685",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 810,
-          "completion_tokens": 50,
-          "total_tokens": 860,
+          "prompt_tokens": 1122,
+          "completion_tokens": 49,
+          "total_tokens": 1171,
           "prompt_tokens_details": {
-            "cached_tokens": 640
+            "cached_tokens": 896
           },
-          "prompt_cache_hit_tokens": 640,
-          "prompt_cache_miss_tokens": 170
+          "prompt_cache_hit_tokens": 896,
+          "prompt_cache_miss_tokens": 226
         }
       },
       "result": {
@@ -171,6 +229,8 @@
           "suggested_slot": "2026-11-06T19:00:00+08:00",
           "effective_slot": null,
           "confirmation_status": "pending",
+          "draft_status": "pending_confirmation",
+          "source_revision": "fe109449ff55c7a5aa1ab8008dab93b539e3466eda22ad4c3a74093115721db6",
           "kind": "draft",
           "review_status": "approved",
           "draft_id": "draft-a6649ef5feb6f0aa"
@@ -179,26 +239,26 @@
       "next_action": "finish"
     },
     {
-      "step": 5,
-      "at": "2026-11-05T04:42:23.585623+00:00",
+      "step": 6,
+      "at": "2026-11-05T05:55:33.244898+00:00",
       "action": "finish",
       "arguments": {
         "source": null,
         "slot": null
       },
-      "reason": "Save returned ok with a pending draft proposal for 19:00; requested 18:00 is occupied.",
+      "reason": "Draft save succeeded as pending proposal for the alternative slot 19:00; requested 18:00 is occupied.",
       "model_response": {
-        "id": "3b3bdaa7-3777-4a64-a3c2-8d3e282fdda0",
+        "id": "4fcb0dcd-68c0-4a66-897f-45554dc3be89",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 979,
-          "completion_tokens": 42,
-          "total_tokens": 1021,
+          "prompt_tokens": 1343,
+          "completion_tokens": 44,
+          "total_tokens": 1387,
           "prompt_tokens_details": {
-            "cached_tokens": 768
+            "cached_tokens": 1024
           },
-          "prompt_cache_hit_tokens": 768,
-          "prompt_cache_miss_tokens": 211
+          "prompt_cache_hit_tokens": 1024,
+          "prompt_cache_miss_tokens": 319
         }
       },
       "result": {

@@ -2,6 +2,7 @@
   "provider": "deepseek",
   "model": "deepseek-flash",
   "evidence": "real_model",
+  "code_revision": "55941029fb1d3df80e46d4ff41292b29a2a5f7d221181e9690bf633dd3521703",
   "started_from": "immutable_user_request",
   "request": {
     "request_id": "request-supplement",
@@ -13,13 +14,16 @@
   "max_steps": 12,
   "model_calls": 6,
   "tool_calls": 5,
+  "preflight": {
+    "ok": true
+  },
   "model_error": null,
   "result": {
     "request_id": "request-supplement",
     "material_id": "M03",
     "task_status": "completed",
     "review_status": "approved",
-    "status_reason": "草稿已保存；未执行发布。",
+    "status_reason": "当前有效审核与草稿已确认；未执行发布。",
     "risk_reasons": [],
     "missing_fields": [],
     "requested_slot": "2026-11-06T18:00:00+08:00",
@@ -28,32 +32,47 @@
     "pending_items": [],
     "save_status": "saved",
     "draft_id": "draft-fc768eb587847cd3",
+    "draft_status": "ready",
+    "persisted_draft": {
+      "material_id": "M03",
+      "channel": "video",
+      "requested_slot": "2026-11-06T18:00:00+08:00",
+      "suggested_slot": "2026-11-06T18:00:00+08:00",
+      "effective_slot": "2026-11-06T18:00:00+08:00",
+      "confirmation_status": "confirmed",
+      "draft_status": "ready",
+      "source_revision": "f6e2e70cfbe845928b9527bc64ef837f20dbb8fdce2bc3d9a4e7037770916a9e",
+      "kind": "draft",
+      "review_status": "approved",
+      "draft_id": "draft-fc768eb587847cd3"
+    },
     "error": null,
     "stop_reason": "model_finished",
+    "source_revision": "f6e2e70cfbe845928b9527bc64ef837f20dbb8fdce2bc3d9a4e7037770916a9e",
     "published": false
   },
   "trace": [
     {
       "step": 1,
-      "at": "2026-11-05T04:42:04.691835+00:00",
+      "at": "2026-11-05T05:55:10.042780+00:00",
       "action": "read_material",
       "arguments": {
         "source": "primary",
         "slot": null
       },
-      "reason": "Read primary metadata for M03.",
+      "reason": "Read primary metadata first as required.",
       "model_response": {
-        "id": "3e52a40a-4ace-4223-be47-8f25449da9e6",
+        "id": "abadcc48-63c2-41f4-9ed2-d7ccc232c0fc",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 593,
+          "prompt_tokens": 719,
           "completion_tokens": 28,
-          "total_tokens": 621,
+          "total_tokens": 747,
           "prompt_tokens_details": {
-            "cached_tokens": 384
+            "cached_tokens": 512
           },
-          "prompt_cache_hit_tokens": 384,
-          "prompt_cache_miss_tokens": 209
+          "prompt_cache_hit_tokens": 512,
+          "prompt_cache_miss_tokens": 207
         }
       },
       "result": {
@@ -66,31 +85,33 @@
         },
         "missing_fields": [
           "rights_status"
-        ]
+        ],
+        "field_conflicts": [],
+        "source_revision": "f6e2e70cfbe845928b9527bc64ef837f20dbb8fdce2bc3d9a4e7037770916a9e"
       },
       "next_action": "read_material"
     },
     {
       "step": 2,
-      "at": "2026-11-05T04:42:05.860383+00:00",
+      "at": "2026-11-05T05:55:11.052361+00:00",
       "action": "read_material",
       "arguments": {
         "source": "archive",
         "slot": null
       },
-      "reason": "Primary metadata lacks rights_status; check archive to supplement.",
+      "reason": "Primary metadata lacks rights_status; archive may supplement missing fields.",
       "model_response": {
-        "id": "17612766-9be7-435e-816d-0c27b1cd6b2f",
+        "id": "8856cddc-ae99-450c-8ceb-e61792ee0d2d",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 665,
-          "completion_tokens": 32,
-          "total_tokens": 697,
+          "prompt_tokens": 843,
+          "completion_tokens": 33,
+          "total_tokens": 876,
           "prompt_tokens_details": {
-            "cached_tokens": 512
+            "cached_tokens": 640
           },
-          "prompt_cache_hit_tokens": 512,
-          "prompt_cache_miss_tokens": 153
+          "prompt_cache_hit_tokens": 640,
+          "prompt_cache_miss_tokens": 203
         }
       },
       "result": {
@@ -102,62 +123,65 @@
           "risk_tags": [],
           "rights_status": "licensed"
         },
-        "missing_fields": []
+        "missing_fields": [],
+        "field_conflicts": [],
+        "source_revision": "f6e2e70cfbe845928b9527bc64ef837f20dbb8fdce2bc3d9a4e7037770916a9e"
       },
       "next_action": "check_rules"
     },
     {
       "step": 3,
-      "at": "2026-11-05T04:42:06.687533+00:00",
+      "at": "2026-11-05T05:55:12.279557+00:00",
       "action": "check_rules",
       "arguments": {
         "source": null,
         "slot": null
       },
-      "reason": "Archive supplied missing rights status; run authoritative review.",
+      "reason": "Primary lacked rights_status; archive supplied licensed with no conflicts. Recheck rules before scheduling.",
       "model_response": {
-        "id": "45d42433-1f8b-43dd-a914-4dc508824521",
+        "id": "3bd34321-b930-4a1f-8604-3f84ccabac22",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 739,
-          "completion_tokens": 31,
-          "total_tokens": 770,
+          "prompt_tokens": 969,
+          "completion_tokens": 39,
+          "total_tokens": 1008,
           "prompt_tokens_details": {
-            "cached_tokens": 512
+            "cached_tokens": 768
           },
-          "prompt_cache_hit_tokens": 512,
-          "prompt_cache_miss_tokens": 227
+          "prompt_cache_hit_tokens": 768,
+          "prompt_cache_miss_tokens": 201
         }
       },
       "result": {
         "ok": true,
         "status": "approved",
         "risk_reasons": [],
-        "missing_fields": []
+        "missing_fields": [],
+        "source_revision": "f6e2e70cfbe845928b9527bc64ef837f20dbb8fdce2bc3d9a4e7037770916a9e"
       },
       "next_action": "query_slots"
     },
     {
       "step": 4,
-      "at": "2026-11-05T04:42:07.906590+00:00",
+      "at": "2026-11-05T05:55:12.988309+00:00",
       "action": "query_slots",
       "arguments": {
         "source": null,
         "slot": null
       },
-      "reason": "Rules approved; checking availability for the requested slot.",
+      "reason": "Rules approved; query available times for the video channel before saving draft.",
       "model_response": {
-        "id": "9784d190-0172-4da3-a409-6004dadbdf12",
+        "id": "38d77142-591d-4a0e-90a6-32dbd3938607",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 786,
-          "completion_tokens": 31,
-          "total_tokens": 817,
+          "prompt_tokens": 1062,
+          "completion_tokens": 35,
+          "total_tokens": 1097,
           "prompt_tokens_details": {
-            "cached_tokens": 640
+            "cached_tokens": 896
           },
-          "prompt_cache_hit_tokens": 640,
-          "prompt_cache_miss_tokens": 146
+          "prompt_cache_hit_tokens": 896,
+          "prompt_cache_miss_tokens": 166
         }
       },
       "result": {
@@ -174,25 +198,25 @@
     },
     {
       "step": 5,
-      "at": "2026-11-05T04:42:08.677220+00:00",
+      "at": "2026-11-05T05:55:14.331671+00:00",
       "action": "save_draft",
       "arguments": {
         "source": null,
         "slot": "2026-11-06T18:00:00+08:00"
       },
-      "reason": "Rules approved and requested slot is available.",
+      "reason": "Archive supplied rights_status, rules approved, and requested slot is available.",
       "model_response": {
-        "id": "1da984cd-9244-4c3b-8065-87a210b96215",
+        "id": "574f5b84-1802-4a1a-b380-3bbec926dab5",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 883,
-          "completion_tokens": 44,
-          "total_tokens": 927,
+          "prompt_tokens": 1159,
+          "completion_tokens": 50,
+          "total_tokens": 1209,
           "prompt_tokens_details": {
-            "cached_tokens": 640
+            "cached_tokens": 1024
           },
-          "prompt_cache_hit_tokens": 640,
-          "prompt_cache_miss_tokens": 243
+          "prompt_cache_hit_tokens": 1024,
+          "prompt_cache_miss_tokens": 135
         }
       },
       "result": {
@@ -205,6 +229,8 @@
           "suggested_slot": "2026-11-06T18:00:00+08:00",
           "effective_slot": "2026-11-06T18:00:00+08:00",
           "confirmation_status": "confirmed",
+          "draft_status": "ready",
+          "source_revision": "f6e2e70cfbe845928b9527bc64ef837f20dbb8fdce2bc3d9a4e7037770916a9e",
           "kind": "draft",
           "review_status": "approved",
           "draft_id": "draft-fc768eb587847cd3"
@@ -214,25 +240,25 @@
     },
     {
       "step": 6,
-      "at": "2026-11-05T04:42:09.427353+00:00",
+      "at": "2026-11-05T05:55:15.624276+00:00",
       "action": "finish",
       "arguments": {
         "source": null,
         "slot": null
       },
-      "reason": "Draft saved successfully at confirmed requested slot; review approved.",
+      "reason": "Draft saved successfully for the confirmed requested slot; archive supplemented rights_status and review approved.",
       "model_response": {
-        "id": "4d84782a-6c40-493a-a773-694f4eb28b14",
+        "id": "0cc3f376-b637-460d-bb5b-2928baec9713",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 1066,
-          "completion_tokens": 32,
-          "total_tokens": 1098,
+          "prompt_tokens": 1396,
+          "completion_tokens": 38,
+          "total_tokens": 1434,
           "prompt_tokens_details": {
-            "cached_tokens": 896
+            "cached_tokens": 1152
           },
-          "prompt_cache_hit_tokens": 896,
-          "prompt_cache_miss_tokens": 170
+          "prompt_cache_hit_tokens": 1152,
+          "prompt_cache_miss_tokens": 244
         }
       },
       "result": {

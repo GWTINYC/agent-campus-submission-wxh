@@ -16,7 +16,7 @@ Python 标准库实现，无 Agent 框架或第三方 Python 依赖。DeepSeek �
 
 ## 环境与离线运行
 
-Python 3.11+（本地验证为 3.12.4），Git。离线入口无需密钥、配置或 pip 安装。
+Python 3.11+，Git。初版本地验证为 3.12.4，本轮本地为 3.14.0，GitHub CI 为 3.12。离线入口无需密钥、配置或 pip 安装。
 
 ```sh
 git clone https://github.com/GWTINYC/agent-campus-submission-wxh.git
@@ -33,6 +33,8 @@ python -m scripts.adversarial
 Mock 的 `evidence` 是 `flow_only`，只证明流程、存储和约束，不证明真实模型决策能力。
 
 本轮增加九个定向攻击、3,888 条有限动作序列、实际本地 HTTP 重定向测试，以及资料冲突、未知风险、资料变化和素材提示注入场景。最新自动化、离线与真实模型结果见 [评估文档](docs/03-evaluation.md)；修复前证据也保留。这是合成案例验收，不代表生产准确率。
+
+最终结果：**44 项测试通过；九个已复现攻击全部拦截；离线 21/21、DeepSeek 21/21 符合预期；GitHub CI 通过。** 3,888 条有限动作序列包含在自动化测试中，不重复计为真实模型案例。
 
 ## 真实模型运行
 

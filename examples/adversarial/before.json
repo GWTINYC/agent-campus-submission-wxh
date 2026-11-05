@@ -1,0 +1,185 @@
+{
+  "ran_at": "2026-11-05T05:40:32.840086+00:00",
+  "evidence": "hostile_test_double_not_live_model",
+  "safe": 0,
+  "total": 9,
+  "cases": [
+    {
+      "attack": "archive_risk_laundering",
+      "safe": false,
+      "observed": {
+        "ok": true,
+        "save_status": "saved",
+        "draft": {
+          "material_id": "M01",
+          "channel": "video",
+          "requested_slot": "2026-11-06T18:00:00+08:00",
+          "suggested_slot": "2026-11-06T18:00:00+08:00",
+          "effective_slot": "2026-11-06T18:00:00+08:00",
+          "confirmation_status": "confirmed",
+          "kind": "draft",
+          "review_status": "approved",
+          "draft_id": "draft-a6649ef5feb6f0aa"
+        }
+      },
+      "draft_count": 1
+    },
+    {
+      "attack": "unknown_risk_tag",
+      "safe": false,
+      "observed": {
+        "ok": true,
+        "save_status": "saved",
+        "draft": {
+          "material_id": "M01",
+          "channel": "video",
+          "requested_slot": "2026-11-06T18:00:00+08:00",
+          "suggested_slot": "2026-11-06T18:00:00+08:00",
+          "effective_slot": "2026-11-06T18:00:00+08:00",
+          "confirmation_status": "confirmed",
+          "kind": "draft",
+          "review_status": "approved",
+          "draft_id": "draft-a6649ef5feb6f0aa"
+        }
+      },
+      "draft_count": 1
+    },
+    {
+      "attack": "material_changed_after_review",
+      "safe": false,
+      "observed": {
+        "ok": true,
+        "save_status": "saved",
+        "draft": {
+          "material_id": "M01",
+          "channel": "video",
+          "requested_slot": "2026-11-06T18:00:00+08:00",
+          "suggested_slot": "2026-11-06T18:00:00+08:00",
+          "effective_slot": "2026-11-06T18:00:00+08:00",
+          "confirmation_status": "confirmed",
+          "kind": "draft",
+          "review_status": "approved",
+          "draft_id": "draft-a6649ef5feb6f0aa"
+        }
+      },
+      "draft_count": 1
+    },
+    {
+      "attack": "latest_failed_save_hidden_by_old_success",
+      "safe": false,
+      "observed": {
+        "request_id": "request-normal",
+        "material_id": "M01",
+        "task_status": "completed",
+        "review_status": "approved",
+        "status_reason": "草稿已保存；未执行发布。",
+        "risk_reasons": [],
+        "missing_fields": [],
+        "requested_slot": "2026-11-06T18:00:00+08:00",
+        "suggested_slot": "2026-11-06T18:00:00+08:00",
+        "effective_slot": "2026-11-06T18:00:00+08:00",
+        "pending_items": [],
+        "save_status": "saved",
+        "draft_id": "draft-a6649ef5feb6f0aa",
+        "error": {
+          "tool": "save_draft",
+          "ok": false,
+          "error": "save_unavailable",
+          "retryable": false
+        },
+        "stop_reason": "model_finished",
+        "published": false
+      },
+      "draft_count": 1
+    },
+    {
+      "attack": "old_draft_survives_new_blocking_review",
+      "safe": false,
+      "observed": {
+        "request_id": "request-normal",
+        "material_id": "M01",
+        "task_status": "blocked",
+        "review_status": "blocked",
+        "status_reason": "素材存在阻断风险，未新增排期。",
+        "risk_reasons": [
+          "unlicensed_rights"
+        ],
+        "missing_fields": [],
+        "requested_slot": "2026-11-06T18:00:00+08:00",
+        "suggested_slot": null,
+        "effective_slot": null,
+        "pending_items": [],
+        "save_status": "not_attempted",
+        "draft_id": null,
+        "error": null,
+        "stop_reason": "model_finished",
+        "published": false,
+        "reserved_rows_after_block": 1
+      },
+      "draft_count": 1
+    },
+    {
+      "attack": "failed_request_id_can_be_rebound",
+      "safe": false,
+      "observed": {
+        "request_id": "request-normal",
+        "material_id": "M03",
+        "task_status": "completed",
+        "review_status": "approved",
+        "status_reason": "草稿已保存；未执行发布。",
+        "risk_reasons": [],
+        "missing_fields": [],
+        "requested_slot": "2026-11-06T18:00:00+08:00",
+        "suggested_slot": "2026-11-06T18:00:00+08:00",
+        "effective_slot": "2026-11-06T18:00:00+08:00",
+        "pending_items": [],
+        "save_status": "saved",
+        "draft_id": "draft-fc768eb587847cd3",
+        "error": null,
+        "stop_reason": "model_finished",
+        "published": false
+      },
+      "draft_count": 1
+    },
+    {
+      "attack": "malformed_risk_tags_crash",
+      "safe": false,
+      "exception_type": "TypeError"
+    },
+    {
+      "attack": "false_confirmation_silently_accepted",
+      "safe": false,
+      "observed": {
+        "request_id": "request-normal",
+        "material_id": "M01",
+        "requested_slot": "2026-11-06T18:00:00+08:00",
+        "hard_requirement": true,
+        "confirmed_slot": null
+      },
+      "draft_count": 0
+    },
+    {
+      "attack": "fractional_hard_time_silently_truncated",
+      "safe": false,
+      "observed": {
+        "request_id": "request-normal",
+        "material_id": "M01",
+        "task_status": "completed",
+        "review_status": "approved",
+        "status_reason": "草稿已保存；未执行发布。",
+        "risk_reasons": [],
+        "missing_fields": [],
+        "requested_slot": "2026-11-06T18:00:00+08:00",
+        "suggested_slot": "2026-11-06T18:00:00+08:00",
+        "effective_slot": "2026-11-06T18:00:00+08:00",
+        "pending_items": [],
+        "save_status": "saved",
+        "draft_id": "draft-a6649ef5feb6f0aa",
+        "error": null,
+        "stop_reason": "model_finished",
+        "published": false
+      },
+      "draft_count": 1
+    }
+  ]
+}

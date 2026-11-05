@@ -2,6 +2,7 @@
   "provider": "mock",
   "model": "deterministic-flow-simulator",
   "evidence": "flow_only",
+  "code_revision": "55941029fb1d3df80e46d4ff41292b29a2a5f7d221181e9690bf633dd3521703",
   "started_from": "immutable_user_request",
   "request": {
     "request_id": "request-risk",
@@ -13,13 +14,16 @@
   "max_steps": 12,
   "model_calls": 3,
   "tool_calls": 2,
+  "preflight": {
+    "ok": true
+  },
   "model_error": null,
   "result": {
     "request_id": "request-risk",
     "material_id": "M04",
     "task_status": "blocked",
     "review_status": "blocked",
-    "status_reason": "素材存在阻断风险，未新增排期。",
+    "status_reason": "当前审核存在阻断风险，旧草稿已失效。",
     "risk_reasons": [
       "prohibited_content",
       "unlicensed_rights"
@@ -31,14 +35,17 @@
     "pending_items": [],
     "save_status": "not_attempted",
     "draft_id": null,
+    "draft_status": null,
+    "persisted_draft": null,
     "error": null,
     "stop_reason": "model_finished",
+    "source_revision": "42b732d5a039144bb2020c9ae479c7c433997b57c237dbe016897130005c94b3",
     "published": false
   },
   "trace": [
     {
       "step": 1,
-      "at": "2026-11-05T04:41:23.638156+00:00",
+      "at": "2026-11-05T05:54:52.693617+00:00",
       "action": "read_material",
       "arguments": {
         "source": "primary",
@@ -56,13 +63,15 @@
             "prohibited_content"
           ]
         },
-        "missing_fields": []
+        "missing_fields": [],
+        "field_conflicts": [],
+        "source_revision": "42b732d5a039144bb2020c9ae479c7c433997b57c237dbe016897130005c94b3"
       },
       "next_action": "check_rules"
     },
     {
       "step": 2,
-      "at": "2026-11-05T04:41:23.638156+00:00",
+      "at": "2026-11-05T05:54:52.695051+00:00",
       "action": "check_rules",
       "arguments": {
         "source": null,
@@ -76,13 +85,14 @@
           "prohibited_content",
           "unlicensed_rights"
         ],
-        "missing_fields": []
+        "missing_fields": [],
+        "source_revision": "42b732d5a039144bb2020c9ae479c7c433997b57c237dbe016897130005c94b3"
       },
       "next_action": "finish"
     },
     {
       "step": 3,
-      "at": "2026-11-05T04:41:23.638156+00:00",
+      "at": "2026-11-05T05:54:52.697127+00:00",
       "action": "finish",
       "arguments": {
         "source": null,

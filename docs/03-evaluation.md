@@ -14,11 +14,15 @@ python -m scripts.adversarial
 - [自动化测试汇总](../examples/test-results.json) 与 [原始测试输出](../examples/test-results.txt)：业务不变量、恶意动作、并发、步数上限和 HTTP 适配器契约；不计为真实模型效果。
 - [离线评估汇总](../examples/mock/evaluation.json)：18 组输入，加 2 次重复、1 次换占用后提交，共 21 次运行。Mock 只验证流程。
 - [真实模型评估汇总](../examples/deepseek/evaluation.json)：同组输入与实际 API 输出；以该文件记录的运行时间、通过数为准。
-- [远端 CI 实际结果](../examples/ci-results.json)：提交 1e7ae87 在 GitHub Linux / Python 3.12 上的自动化测试、离线评估均成功；[对应运行](https://github.com/GWTINYC/agent-campus-submission-wxh/actions/runs/41969702301)。
+- [远端 CI 实际结果](../examples/ci-results.json)：本轮代码提交 8740fa2 在 GitHub Linux / Python 3.12 上的自动化测试、离线评估和攻击回归均成功；[对应运行](https://github.com/GWTINYC/agent-campus-submission-wxh/actions/runs/41977138066)。
 
 ## 必须验收项与实际输出
 
 初版提交 6426274 的结果为 27 项测试、离线 15/15、DeepSeek 15/15。第二轮按第一性原理重新推导不变量，增加对抗测试与独立效果断言；最新计数以本页链接的实际汇总为准。初版结果不能替代本轮回归。
+
+本轮最终结果：**44 项测试通过（内含 3,888 条有限动作序列），九个定向攻击全部拦截，离线 21/21、DeepSeek 21/21 符合预期**。本轮本地 Python 3.14.0，远端 CI Python 3.12。最终真实评估于北京时间 13:54:55 开始，共 101 次模型请求、80 次业务工具调用，API 报告合计 99,617 tokens。该最终样本未产生 invalid_action；纠错机制由自动化测试覆盖，之前真实失败也保留，不能把最终零次无效动作声称为现场纠错成功。
+
+每份最终 Trace 带 code_revision；核对所有真实 Trace 的摘要与当前源码一致，避免混用旧版本记录。小规模合成结果不代表生产成功率。
 
 | 场景 | 输入 | 真实输出与 Trace | 核对项 |
 | --- | --- | --- | --- |
@@ -56,7 +60,7 @@ python -m scripts.adversarial
 
 ## 发现的失败与修正
 
-修正前完整真实评估为 **14/15**。信息缺失案例中，模型读取主资料、补查归档失败后直接 finish，没有先调用 check_rules；程序把该路径误归类为 failed。
+第一轮修正前完整真实评估为 **14/15**。信息缺失案例中，模型读取主资料、补查归档失败后直接 finish，没有先调用 check_rules；程序把该路径误归类为 failed。
 
 保留 [原始失败 Trace](../examples/regressions/missing-before-fix.json) 和 [修正前评估汇总](../examples/regressions/evaluation-before-missing-fix.json)。修正后从实际已读到的缺失字段判断 needs_information，保留 review_status=not_checked，避免虚报审核完成。增加 test_model_can_finish_after_failed_supplement_before_rule_check 后重新运行验证。
 

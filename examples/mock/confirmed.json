@@ -2,6 +2,7 @@
   "provider": "mock",
   "model": "deterministic-flow-simulator",
   "evidence": "flow_only",
+  "code_revision": "55941029fb1d3df80e46d4ff41292b29a2a5f7d221181e9690bf633dd3521703",
   "started_from": "immutable_user_request",
   "request": {
     "request_id": "request-confirmed",
@@ -13,13 +14,16 @@
   "max_steps": 12,
   "model_calls": 5,
   "tool_calls": 4,
+  "preflight": {
+    "ok": true
+  },
   "model_error": null,
   "result": {
     "request_id": "request-confirmed",
     "material_id": "M01",
     "task_status": "completed",
     "review_status": "approved",
-    "status_reason": "草稿已保存；未执行发布。",
+    "status_reason": "当前有效审核与草稿已确认；未执行发布。",
     "risk_reasons": [],
     "missing_fields": [],
     "requested_slot": "2026-11-06T18:00:00+08:00",
@@ -28,14 +32,29 @@
     "pending_items": [],
     "save_status": "saved",
     "draft_id": "draft-b90d560b08eecdaa",
+    "draft_status": "ready",
+    "persisted_draft": {
+      "material_id": "M01",
+      "channel": "video",
+      "requested_slot": "2026-11-06T18:00:00+08:00",
+      "suggested_slot": "2026-11-06T19:00:00+08:00",
+      "effective_slot": "2026-11-06T19:00:00+08:00",
+      "confirmation_status": "confirmed",
+      "draft_status": "ready",
+      "source_revision": "fe109449ff55c7a5aa1ab8008dab93b539e3466eda22ad4c3a74093115721db6",
+      "kind": "draft",
+      "review_status": "approved",
+      "draft_id": "draft-b90d560b08eecdaa"
+    },
     "error": null,
     "stop_reason": "model_finished",
+    "source_revision": "fe109449ff55c7a5aa1ab8008dab93b539e3466eda22ad4c3a74093115721db6",
     "published": false
   },
   "trace": [
     {
       "step": 1,
-      "at": "2026-11-05T04:41:23.717494+00:00",
+      "at": "2026-11-05T05:54:52.924546+00:00",
       "action": "read_material",
       "arguments": {
         "source": "primary",
@@ -51,13 +70,15 @@
           "rights_status": "licensed",
           "risk_tags": []
         },
-        "missing_fields": []
+        "missing_fields": [],
+        "field_conflicts": [],
+        "source_revision": "fe109449ff55c7a5aa1ab8008dab93b539e3466eda22ad4c3a74093115721db6"
       },
       "next_action": "check_rules"
     },
     {
       "step": 2,
-      "at": "2026-11-05T04:41:23.717494+00:00",
+      "at": "2026-11-05T05:54:52.925646+00:00",
       "action": "check_rules",
       "arguments": {
         "source": null,
@@ -68,13 +89,14 @@
         "ok": true,
         "status": "approved",
         "risk_reasons": [],
-        "missing_fields": []
+        "missing_fields": [],
+        "source_revision": "fe109449ff55c7a5aa1ab8008dab93b539e3466eda22ad4c3a74093115721db6"
       },
       "next_action": "query_slots"
     },
     {
       "step": 3,
-      "at": "2026-11-05T04:41:23.717494+00:00",
+      "at": "2026-11-05T05:54:52.926446+00:00",
       "action": "query_slots",
       "arguments": {
         "source": null,
@@ -96,7 +118,7 @@
     },
     {
       "step": 4,
-      "at": "2026-11-05T04:41:23.718494+00:00",
+      "at": "2026-11-05T05:54:52.928010+00:00",
       "action": "save_draft",
       "arguments": {
         "source": null,
@@ -113,6 +135,8 @@
           "suggested_slot": "2026-11-06T19:00:00+08:00",
           "effective_slot": "2026-11-06T19:00:00+08:00",
           "confirmation_status": "confirmed",
+          "draft_status": "ready",
+          "source_revision": "fe109449ff55c7a5aa1ab8008dab93b539e3466eda22ad4c3a74093115721db6",
           "kind": "draft",
           "review_status": "approved",
           "draft_id": "draft-b90d560b08eecdaa"
@@ -122,7 +146,7 @@
     },
     {
       "step": 5,
-      "at": "2026-11-05T04:41:23.723499+00:00",
+      "at": "2026-11-05T05:54:52.937559+00:00",
       "action": "finish",
       "arguments": {
         "source": null,

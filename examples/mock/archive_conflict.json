@@ -1,0 +1,155 @@
+{
+  "provider": "mock",
+  "model": "deterministic-flow-simulator",
+  "evidence": "flow_only",
+  "code_revision": "55941029fb1d3df80e46d4ff41292b29a2a5f7d221181e9690bf633dd3521703",
+  "started_from": "immutable_user_request",
+  "request": {
+    "request_id": "request-archive_conflict",
+    "material_id": "M01",
+    "requested_slot": "2026-11-06T18:00:00+08:00",
+    "hard_requirement": true,
+    "confirmed_slot": null
+  },
+  "max_steps": 12,
+  "model_calls": 5,
+  "tool_calls": 4,
+  "preflight": {
+    "ok": true
+  },
+  "model_error": null,
+  "result": {
+    "request_id": "request-archive_conflict",
+    "material_id": "M01",
+    "task_status": "needs_confirmation",
+    "review_status": "needs_review",
+    "status_reason": "存在待确认事项，尚未完成排期确认。",
+    "risk_reasons": [
+      "conflicting_metadata:channel"
+    ],
+    "missing_fields": [],
+    "requested_slot": "2026-11-06T18:00:00+08:00",
+    "suggested_slot": null,
+    "effective_slot": null,
+    "pending_items": [
+      "人工复核风险或资料冲突"
+    ],
+    "save_status": "not_attempted",
+    "draft_id": null,
+    "draft_status": null,
+    "persisted_draft": null,
+    "error": null,
+    "stop_reason": "model_finished",
+    "source_revision": "a83b77f242d79c8bfe3ad5f4f523cb56236d9cb7a3d995b82b27dc621279a422",
+    "published": false
+  },
+  "trace": [
+    {
+      "step": 1,
+      "at": "2026-11-05T05:54:53.373926+00:00",
+      "action": "read_material",
+      "arguments": {
+        "source": "primary",
+        "slot": null
+      },
+      "reason": "离线模拟：读取主素材",
+      "result": {
+        "ok": true,
+        "source": "primary",
+        "material": {
+          "title": "待补齐素材",
+          "channel": "video",
+          "risk_tags": []
+        },
+        "missing_fields": [
+          "rights_status"
+        ],
+        "field_conflicts": [],
+        "source_revision": "a83b77f242d79c8bfe3ad5f4f523cb56236d9cb7a3d995b82b27dc621279a422"
+      },
+      "next_action": "check_rules"
+    },
+    {
+      "step": 2,
+      "at": "2026-11-05T05:54:53.374626+00:00",
+      "action": "check_rules",
+      "arguments": {
+        "source": null,
+        "slot": null
+      },
+      "reason": "离线模拟：核对当前元数据",
+      "result": {
+        "ok": true,
+        "status": "needs_information",
+        "risk_reasons": [],
+        "missing_fields": [
+          "rights_status"
+        ],
+        "source_revision": "a83b77f242d79c8bfe3ad5f4f523cb56236d9cb7a3d995b82b27dc621279a422"
+      },
+      "next_action": "read_material"
+    },
+    {
+      "step": 3,
+      "at": "2026-11-05T05:54:53.378102+00:00",
+      "action": "read_material",
+      "arguments": {
+        "source": "archive",
+        "slot": null
+      },
+      "reason": "离线模拟：缺失字段，补查归档",
+      "result": {
+        "ok": true,
+        "source": "archive",
+        "material": {
+          "title": "待补齐素材",
+          "channel": "video",
+          "risk_tags": [],
+          "rights_status": "licensed"
+        },
+        "missing_fields": [],
+        "field_conflicts": [
+          "channel"
+        ],
+        "source_revision": "a83b77f242d79c8bfe3ad5f4f523cb56236d9cb7a3d995b82b27dc621279a422"
+      },
+      "next_action": "check_rules"
+    },
+    {
+      "step": 4,
+      "at": "2026-11-05T05:54:53.378907+00:00",
+      "action": "check_rules",
+      "arguments": {
+        "source": null,
+        "slot": null
+      },
+      "reason": "离线模拟：核对当前元数据",
+      "result": {
+        "ok": true,
+        "status": "needs_review",
+        "risk_reasons": [
+          "conflicting_metadata:channel"
+        ],
+        "missing_fields": [],
+        "source_revision": "a83b77f242d79c8bfe3ad5f4f523cb56236d9cb7a3d995b82b27dc621279a422"
+      },
+      "next_action": "finish"
+    },
+    {
+      "step": 5,
+      "at": "2026-11-05T05:54:53.379563+00:00",
+      "action": "finish",
+      "arguments": {
+        "source": null,
+        "slot": null
+      },
+      "reason": "离线模拟：存在风险或信息缺口",
+      "result": {
+        "ok": true,
+        "message": "Final status rendered from authoritative tool state."
+      },
+      "next_action": null
+    }
+  ],
+  "database_draft_count": 0
+}

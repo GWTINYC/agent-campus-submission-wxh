@@ -1,0 +1,88 @@
+{
+  "provider": "deepseek",
+  "model": "deepseek-flash",
+  "evidence": "real_model",
+  "code_revision": "ab6f6d2c5b4602cccf2c2b33caffb73981a271e1c60e27cf67dd07fa445d07e2",
+  "started_from": "immutable_user_request",
+  "request": {
+    "request_id": "request-supplement",
+    "material_id": "M03",
+    "requested_slot": "2026-11-06T18:00:00+08:00",
+    "hard_requirement": true,
+    "confirmed_slot": null
+  },
+  "max_steps": 12,
+  "model_calls": 2,
+  "tool_calls": 1,
+  "preflight": {
+    "ok": true
+  },
+  "model_error": "Invalid model action schema.",
+  "result": {
+    "request_id": "request-supplement",
+    "material_id": "M03",
+    "task_status": "incomplete",
+    "review_status": "not_checked",
+    "status_reason": "未完成：model_error",
+    "risk_reasons": [],
+    "missing_fields": [
+      "rights_status"
+    ],
+    "requested_slot": "2026-11-06T18:00:00+08:00",
+    "suggested_slot": null,
+    "effective_slot": null,
+    "pending_items": [
+      "rights_status"
+    ],
+    "save_status": "not_attempted",
+    "draft_id": null,
+    "draft_status": null,
+    "persisted_draft": null,
+    "error": null,
+    "stop_reason": "model_error",
+    "source_revision": "f6e2e70cfbe845928b9527bc64ef837f20dbb8fdce2bc3d9a4e7037770916a9e",
+    "published": false
+  },
+  "trace": [
+    {
+      "step": 1,
+      "at": "2026-11-05T05:49:42.942999+00:00",
+      "action": "read_material",
+      "arguments": {
+        "source": "primary",
+        "slot": null
+      },
+      "reason": "Read primary material metadata before review.",
+      "model_response": {
+        "id": "7127071b-9d64-46df-8769-472d99c75aad",
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 669,
+          "completion_tokens": 28,
+          "total_tokens": 697,
+          "prompt_tokens_details": {
+            "cached_tokens": 384
+          },
+          "prompt_cache_hit_tokens": 384,
+          "prompt_cache_miss_tokens": 285
+        }
+      },
+      "result": {
+        "ok": true,
+        "source": "primary",
+        "material": {
+          "title": "归档可补齐版权信息",
+          "channel": "video",
+          "risk_tags": []
+        },
+        "missing_fields": [
+          "rights_status"
+        ],
+        "field_conflicts": [],
+        "source_revision": "f6e2e70cfbe845928b9527bc64ef837f20dbb8fdce2bc3d9a4e7037770916a9e"
+      },
+      "next_action": null
+    }
+  ],
+  "database_draft_count": 0
+}

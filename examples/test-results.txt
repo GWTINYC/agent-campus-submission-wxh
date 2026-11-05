@@ -1,3 +1,20 @@
+test_action_specific_arguments_and_publish_are_rejected (test_adversarial.AdversarialTests.test_action_specific_arguments_and_publish_are_rejected) ... ok
+test_archive_cannot_be_used_without_primary_identity (test_adversarial.AdversarialTests.test_archive_cannot_be_used_without_primary_identity) ... ok
+test_equivalent_timezone_duplicate_is_one_draft (test_adversarial.AdversarialTests.test_equivalent_timezone_duplicate_is_one_draft) ... ok
+test_evaluation_rejects_forged_success_and_persistence (test_adversarial.AdversarialTests.test_evaluation_rejects_forged_success_and_persistence) ... ok
+test_exhaustive_short_hostile_action_sequences (test_adversarial.AdversarialTests.test_exhaustive_short_hostile_action_sequences) ... ok
+test_hard_original_slot_cannot_be_ignored_while_available (test_adversarial.AdversarialTests.test_hard_original_slot_cannot_be_ignored_while_available) ... ok
+test_identity_rejection_has_no_draft_mutation_side_effect (test_adversarial.AdversarialTests.test_identity_rejection_has_no_draft_mutation_side_effect) ... ok
+test_invalid_action_feedback_can_be_repaired_without_executing_it (test_adversarial.AdversarialTests.test_invalid_action_feedback_can_be_repaired_without_executing_it) ... ok
+test_malformed_confirmation_values_and_fractional_time (test_adversarial.AdversarialTests.test_malformed_confirmation_values_and_fractional_time) ... ok
+test_nine_reproduced_attacks_are_now_safe (test_adversarial.AdversarialTests.test_nine_reproduced_attacks_are_now_safe) ... ok
+test_occupancy_change_after_success_is_not_reported_as_valid (test_adversarial.AdversarialTests.test_occupancy_change_after_success_is_not_reported_as_valid) ... ok
+test_rejected_request_identity_does_not_call_model (test_adversarial.AdversarialTests.test_rejected_request_identity_does_not_call_model) ... ok
+test_repeated_forbidden_actions_use_budget_without_side_effects (test_adversarial.AdversarialTests.test_repeated_forbidden_actions_use_budget_without_side_effects) ... ok
+test_rule_change_invalidates_review_before_save (test_adversarial.AdversarialTests.test_rule_change_invalidates_review_before_save) ... ok
+test_source_change_after_success_revokes_slot_and_keeps_history (test_adversarial.AdversarialTests.test_source_change_after_success_revokes_slot_and_keeps_history) ... ok
+test_redirect_does_not_forward_authorization (test_adversarial.HttpBoundaryTests.test_redirect_does_not_forward_authorization) ... ok
+test_truncated_and_oversized_responses_are_not_actions (test_adversarial.HttpBoundaryTests.test_truncated_and_oversized_responses_are_not_actions) ... ok
 test_all_acceptance_scenarios (test_agent.AgentTests.test_all_acceptance_scenarios) ... ok
 test_changed_occupancy_updates_same_pending_draft (test_agent.AgentTests.test_changed_occupancy_updates_same_pending_draft) ... ok
 test_concurrent_saves_cannot_reserve_same_slot (test_agent.AgentTests.test_concurrent_saves_cannot_reserve_same_slot) ... ok
@@ -27,6 +44,6 @@ test_blank_json_is_model_error (test_agent.ProviderTests.test_blank_json_is_mode
 test_deepseek_json_contract_and_observation_feedback (test_agent.ProviderTests.test_deepseek_json_contract_and_observation_feedback) ... ok
 
 ----------------------------------------------------------------------
-Ran 27 tests in 0.136s
+Ran 44 tests in 8.131s
 
 OK

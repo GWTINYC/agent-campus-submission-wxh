@@ -1,0 +1,290 @@
+{
+  "provider": "deepseek",
+  "model": "deepseek-flash",
+  "evidence": "real_model",
+  "code_revision": "55941029fb1d3df80e46d4ff41292b29a2a5f7d221181e9690bf633dd3521703",
+  "started_from": "immutable_user_request",
+  "request": {
+    "request_id": "request-material_drift",
+    "material_id": "M01",
+    "requested_slot": "2026-11-06T18:00:00+08:00",
+    "hard_requirement": true,
+    "confirmed_slot": null
+  },
+  "max_steps": 12,
+  "model_calls": 7,
+  "tool_calls": 6,
+  "preflight": {
+    "ok": true
+  },
+  "model_error": null,
+  "result": {
+    "request_id": "request-material_drift",
+    "material_id": "M01",
+    "task_status": "blocked",
+    "review_status": "blocked",
+    "status_reason": "当前审核存在阻断风险，旧草稿已失效。",
+    "risk_reasons": [
+      "unlicensed_rights"
+    ],
+    "missing_fields": [],
+    "requested_slot": "2026-11-06T18:00:00+08:00",
+    "suggested_slot": null,
+    "effective_slot": null,
+    "pending_items": [],
+    "save_status": "failed",
+    "draft_id": null,
+    "draft_status": null,
+    "persisted_draft": null,
+    "error": {
+      "tool": "save_draft",
+      "ok": false,
+      "error": "stale_review",
+      "retryable": true,
+      "required_source": "primary"
+    },
+    "stop_reason": "model_finished",
+    "source_revision": "06611b8137e4702b28659ac0422df4c223b9ee02bc35e158dbd8e83787c1bc7f",
+    "published": false
+  },
+  "trace": [
+    {
+      "step": 1,
+      "at": "2026-11-05T05:56:24.624298+00:00",
+      "action": "read_material",
+      "arguments": {
+        "source": "primary",
+        "slot": null
+      },
+      "reason": "Read primary material metadata before review.",
+      "model_response": {
+        "id": "68766f8c-bc7f-45b7-a84d-66fd53e5290d",
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 720,
+          "completion_tokens": 28,
+          "total_tokens": 748,
+          "prompt_tokens_details": {
+            "cached_tokens": 512
+          },
+          "prompt_cache_hit_tokens": 512,
+          "prompt_cache_miss_tokens": 208
+        }
+      },
+      "result": {
+        "ok": true,
+        "source": "primary",
+        "material": {
+          "title": "字幕功能演示",
+          "channel": "video",
+          "rights_status": "licensed",
+          "risk_tags": []
+        },
+        "missing_fields": [],
+        "field_conflicts": [],
+        "source_revision": "fe109449ff55c7a5aa1ab8008dab93b539e3466eda22ad4c3a74093115721db6"
+      },
+      "next_action": "check_rules"
+    },
+    {
+      "step": 2,
+      "at": "2026-11-05T05:56:25.724007+00:00",
+      "action": "check_rules",
+      "arguments": {
+        "source": null,
+        "slot": null
+      },
+      "reason": "Primary metadata read with no missing fields or conflicts; run authoritative review.",
+      "model_response": {
+        "id": "a5dd8d50-40c9-439a-8b11-a4ffaf642571",
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 842,
+          "completion_tokens": 35,
+          "total_tokens": 877,
+          "prompt_tokens_details": {
+            "cached_tokens": 640
+          },
+          "prompt_cache_hit_tokens": 640,
+          "prompt_cache_miss_tokens": 202
+        }
+      },
+      "result": {
+        "ok": true,
+        "status": "approved",
+        "risk_reasons": [],
+        "missing_fields": [],
+        "source_revision": "fe109449ff55c7a5aa1ab8008dab93b539e3466eda22ad4c3a74093115721db6"
+      },
+      "next_action": "query_slots"
+    },
+    {
+      "step": 3,
+      "at": "2026-11-05T05:56:26.942207+00:00",
+      "action": "query_slots",
+      "arguments": {
+        "source": null,
+        "slot": null
+      },
+      "reason": "Material approved; need available times to schedule requested slot.",
+      "model_response": {
+        "id": "68cae618-9a63-42c2-8bed-1051bf4c911c",
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 931,
+          "completion_tokens": 32,
+          "total_tokens": 963,
+          "prompt_tokens_details": {
+            "cached_tokens": 768
+          },
+          "prompt_cache_hit_tokens": 768,
+          "prompt_cache_miss_tokens": 163
+        }
+      },
+      "result": {
+        "ok": true,
+        "available": [
+          "2026-11-06T18:00:00+08:00",
+          "2026-11-06T19:00:00+08:00",
+          "2026-11-06T20:00:00+08:00"
+        ],
+        "occupied": [],
+        "channel": "video"
+      },
+      "next_action": "save_draft"
+    },
+    {
+      "step": 4,
+      "at": "2026-11-05T05:56:28.026167+00:00",
+      "action": "save_draft",
+      "arguments": {
+        "source": null,
+        "slot": "2026-11-06T18:00:00+08:00"
+      },
+      "reason": "Rules approved and requested slot is available.",
+      "model_response": {
+        "id": "78f91852-91cc-43b6-9423-33492b5eb14d",
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 1028,
+          "completion_tokens": 44,
+          "total_tokens": 1072,
+          "prompt_tokens_details": {
+            "cached_tokens": 894
+          },
+          "prompt_cache_hit_tokens": 894,
+          "prompt_cache_miss_tokens": 134
+        }
+      },
+      "result": {
+        "ok": false,
+        "error": "stale_review",
+        "retryable": true,
+        "required_source": "primary"
+      },
+      "next_action": "read_material"
+    },
+    {
+      "step": 5,
+      "at": "2026-11-05T05:56:28.957342+00:00",
+      "action": "read_material",
+      "arguments": {
+        "source": "primary",
+        "slot": null
+      },
+      "reason": "Save failed with stale_review; re-read primary as required.",
+      "model_response": {
+        "id": "c01c8bae-5789-40a8-9b76-281607e24e53",
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 1097,
+          "completion_tokens": 34,
+          "total_tokens": 1131,
+          "prompt_tokens_details": {
+            "cached_tokens": 896
+          },
+          "prompt_cache_hit_tokens": 896,
+          "prompt_cache_miss_tokens": 201
+        }
+      },
+      "result": {
+        "ok": true,
+        "source": "primary",
+        "material": {
+          "title": "字幕功能演示",
+          "channel": "video",
+          "rights_status": "unlicensed",
+          "risk_tags": []
+        },
+        "missing_fields": [],
+        "field_conflicts": [],
+        "source_revision": "06611b8137e4702b28659ac0422df4c223b9ee02bc35e158dbd8e83787c1bc7f"
+      },
+      "next_action": "check_rules"
+    },
+    {
+      "step": 6,
+      "at": "2026-11-05T05:56:29.762370+00:00",
+      "action": "check_rules",
+      "arguments": {
+        "source": null,
+        "slot": null
+      },
+      "reason": "Recheck rules on refreshed primary material after stale_review.",
+      "model_response": {
+        "id": "f64c958b-983c-4b8a-a18f-cf0f2c57fb16",
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 1221,
+          "completion_tokens": 33,
+          "total_tokens": 1254,
+          "prompt_tokens_details": {
+            "cached_tokens": 1024
+          },
+          "prompt_cache_hit_tokens": 1024,
+          "prompt_cache_miss_tokens": 197
+        }
+      },
+      "result": {
+        "ok": true,
+        "status": "blocked",
+        "risk_reasons": [
+          "unlicensed_rights"
+        ],
+        "missing_fields": [],
+        "source_revision": "06611b8137e4702b28659ac0422df4c223b9ee02bc35e158dbd8e83787c1bc7f"
+      },
+      "next_action": "finish"
+    },
+    {
+      "step": 7,
+      "at": "2026-11-05T05:56:30.767830+00:00",
+      "action": "finish",
+      "arguments": {
+        "source": null,
+        "slot": null
+      },
+      "reason": "Rechecked primary material and rules: rights now unlicensed, review blocked; cannot schedule.",
+      "model_response": {
+        "id": "4f635490-79c1-4623-90e8-a98a92377ca2",
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 1318,
+          "completion_tokens": 38,
+          "total_tokens": 1356,
+          "prompt_tokens_details": {
+            "cached_tokens": 1152
+          },
+          "prompt_cache_hit_tokens": 1152,
+          "prompt_cache_miss_tokens": 166
+        }
+      },
+      "result": {
+        "ok": true,
+        "message": "Final status rendered from authoritative tool state."
+      },
+      "next_action": null
+    }
+  ],
+  "database_draft_count": 0
+}

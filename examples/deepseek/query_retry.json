@@ -2,6 +2,7 @@
   "provider": "deepseek",
   "model": "deepseek-flash",
   "evidence": "real_model",
+  "code_revision": "55941029fb1d3df80e46d4ff41292b29a2a5f7d221181e9690bf633dd3521703",
   "started_from": "immutable_user_request",
   "request": {
     "request_id": "request-query_retry",
@@ -13,13 +14,16 @@
   "max_steps": 12,
   "model_calls": 6,
   "tool_calls": 5,
+  "preflight": {
+    "ok": true
+  },
   "model_error": null,
   "result": {
     "request_id": "request-query_retry",
     "material_id": "M01",
     "task_status": "completed",
     "review_status": "approved",
-    "status_reason": "草稿已保存；未执行发布。",
+    "status_reason": "当前有效审核与草稿已确认；未执行发布。",
     "risk_reasons": [],
     "missing_fields": [],
     "requested_slot": "2026-11-06T18:00:00+08:00",
@@ -28,32 +32,47 @@
     "pending_items": [],
     "save_status": "saved",
     "draft_id": "draft-a6649ef5feb6f0aa",
+    "draft_status": "ready",
+    "persisted_draft": {
+      "material_id": "M01",
+      "channel": "video",
+      "requested_slot": "2026-11-06T18:00:00+08:00",
+      "suggested_slot": "2026-11-06T18:00:00+08:00",
+      "effective_slot": "2026-11-06T18:00:00+08:00",
+      "confirmation_status": "confirmed",
+      "draft_status": "ready",
+      "source_revision": "fe109449ff55c7a5aa1ab8008dab93b539e3466eda22ad4c3a74093115721db6",
+      "kind": "draft",
+      "review_status": "approved",
+      "draft_id": "draft-a6649ef5feb6f0aa"
+    },
     "error": null,
     "stop_reason": "model_finished",
+    "source_revision": "fe109449ff55c7a5aa1ab8008dab93b539e3466eda22ad4c3a74093115721db6",
     "published": false
   },
   "trace": [
     {
       "step": 1,
-      "at": "2026-11-05T04:42:36.883560+00:00",
+      "at": "2026-11-05T05:55:49.359448+00:00",
       "action": "read_material",
       "arguments": {
         "source": "primary",
         "slot": null
       },
-      "reason": "No prior observations; read primary material metadata first.",
+      "reason": "Read primary metadata before review.",
       "model_response": {
-        "id": "640fa153-70cb-4328-bbf3-496f8e66a4a5",
+        "id": "880616b3-fc5f-4ba3-b6e3-71e2112b2f45",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 596,
-          "completion_tokens": 31,
-          "total_tokens": 627,
+          "prompt_tokens": 722,
+          "completion_tokens": 27,
+          "total_tokens": 749,
           "prompt_tokens_details": {
-            "cached_tokens": 384
+            "cached_tokens": 512
           },
-          "prompt_cache_hit_tokens": 384,
-          "prompt_cache_miss_tokens": 212
+          "prompt_cache_hit_tokens": 512,
+          "prompt_cache_miss_tokens": 210
         }
       },
       "result": {
@@ -65,62 +84,65 @@
           "rights_status": "licensed",
           "risk_tags": []
         },
-        "missing_fields": []
+        "missing_fields": [],
+        "field_conflicts": [],
+        "source_revision": "fe109449ff55c7a5aa1ab8008dab93b539e3466eda22ad4c3a74093115721db6"
       },
       "next_action": "check_rules"
     },
     {
       "step": 2,
-      "at": "2026-11-05T04:42:38.175087+00:00",
+      "at": "2026-11-05T05:55:50.318966+00:00",
       "action": "check_rules",
       "arguments": {
-        "source": "primary",
+        "source": null,
         "slot": null
       },
-      "reason": "Primary metadata read; checking authoritative review status.",
+      "reason": "Primary material metadata read; now run authoritative review before scheduling.",
       "model_response": {
-        "id": "1b50bcfa-88a1-435e-8855-5a65ef096876",
+        "id": "d96fbc43-aad7-415f-a0dd-556f698b6d9a",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 670,
-          "completion_tokens": 30,
-          "total_tokens": 700,
+          "prompt_tokens": 844,
+          "completion_tokens": 33,
+          "total_tokens": 877,
           "prompt_tokens_details": {
-            "cached_tokens": 512
+            "cached_tokens": 640
           },
-          "prompt_cache_hit_tokens": 512,
-          "prompt_cache_miss_tokens": 158
+          "prompt_cache_hit_tokens": 640,
+          "prompt_cache_miss_tokens": 204
         }
       },
       "result": {
         "ok": true,
         "status": "approved",
         "risk_reasons": [],
-        "missing_fields": []
+        "missing_fields": [],
+        "source_revision": "fe109449ff55c7a5aa1ab8008dab93b539e3466eda22ad4c3a74093115721db6"
       },
       "next_action": "query_slots"
     },
     {
       "step": 3,
-      "at": "2026-11-05T04:42:38.943293+00:00",
+      "at": "2026-11-05T05:55:51.160352+00:00",
       "action": "query_slots",
       "arguments": {
         "source": null,
         "slot": null
       },
-      "reason": "Material approved; checking channel availability for requested time.",
+      "reason": "Metadata read and rules approved; need current slot availability.",
       "model_response": {
-        "id": "b7db170c-0715-4085-9b8c-6d77966e5123",
+        "id": "523992c0-a120-4385-902a-8060753b4b6e",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 718,
-          "completion_tokens": 31,
-          "total_tokens": 749,
+          "prompt_tokens": 933,
+          "completion_tokens": 32,
+          "total_tokens": 965,
           "prompt_tokens_details": {
-            "cached_tokens": 512
+            "cached_tokens": 768
           },
-          "prompt_cache_hit_tokens": 512,
-          "prompt_cache_miss_tokens": 206
+          "prompt_cache_hit_tokens": 768,
+          "prompt_cache_miss_tokens": 165
         }
       },
       "result": {
@@ -132,25 +154,25 @@
     },
     {
       "step": 4,
-      "at": "2026-11-05T04:42:39.811678+00:00",
+      "at": "2026-11-05T05:55:52.380519+00:00",
       "action": "query_slots",
       "arguments": {
         "source": null,
         "slot": null
       },
-      "reason": "Slot query failed with retryable tool_unavailable; retrying to get available times.",
+      "reason": "Slot query failed with retryable tool_unavailable; retrying to obtain availability.",
       "model_response": {
-        "id": "2eca5baf-395c-4150-aab6-997e1e9627f0",
+        "id": "13cecae3-6667-4df0-ba36-28fd3968c5c9",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 762,
-          "completion_tokens": 39,
-          "total_tokens": 801,
+          "prompt_tokens": 977,
+          "completion_tokens": 38,
+          "total_tokens": 1015,
           "prompt_tokens_details": {
-            "cached_tokens": 512
+            "cached_tokens": 768
           },
-          "prompt_cache_hit_tokens": 512,
-          "prompt_cache_miss_tokens": 250
+          "prompt_cache_hit_tokens": 768,
+          "prompt_cache_miss_tokens": 209
         }
       },
       "result": {
@@ -167,25 +189,25 @@
     },
     {
       "step": 5,
-      "at": "2026-11-05T04:42:40.628333+00:00",
+      "at": "2026-11-05T05:55:53.530785+00:00",
       "action": "save_draft",
       "arguments": {
         "source": null,
         "slot": "2026-11-06T18:00:00+08:00"
       },
-      "reason": "Review approved and requested slot is available.",
+      "reason": "Review approved and requested slot is available; save draft at confirmed-time-priority slot.",
       "model_response": {
-        "id": "acc6528e-2221-49f3-8365-73d6494cf128",
+        "id": "0bce1c47-b22c-463c-985c-8e82aa055eae",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 859,
-          "completion_tokens": 44,
-          "total_tokens": 903,
+          "prompt_tokens": 1074,
+          "completion_tokens": 53,
+          "total_tokens": 1127,
           "prompt_tokens_details": {
-            "cached_tokens": 640
+            "cached_tokens": 896
           },
-          "prompt_cache_hit_tokens": 640,
-          "prompt_cache_miss_tokens": 219
+          "prompt_cache_hit_tokens": 896,
+          "prompt_cache_miss_tokens": 178
         }
       },
       "result": {
@@ -198,6 +220,8 @@
           "suggested_slot": "2026-11-06T18:00:00+08:00",
           "effective_slot": "2026-11-06T18:00:00+08:00",
           "confirmation_status": "confirmed",
+          "draft_status": "ready",
+          "source_revision": "fe109449ff55c7a5aa1ab8008dab93b539e3466eda22ad4c3a74093115721db6",
           "kind": "draft",
           "review_status": "approved",
           "draft_id": "draft-a6649ef5feb6f0aa"
@@ -207,25 +231,25 @@
     },
     {
       "step": 6,
-      "at": "2026-11-05T04:42:41.676234+00:00",
+      "at": "2026-11-05T05:55:54.716167+00:00",
       "action": "finish",
       "arguments": {
         "source": null,
         "slot": null
       },
-      "reason": "Draft saved successfully with approval; review complete.",
+      "reason": "Draft saved successfully at the confirmed requested slot; concluding.",
       "model_response": {
-        "id": "680ca734-cf54-4bc0-b7c3-8da8fa9cf78c",
+        "id": "3c70e0ca-cb22-4672-8fe2-98509fc52565",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 1045,
-          "completion_tokens": 30,
-          "total_tokens": 1075,
+          "prompt_tokens": 1310,
+          "completion_tokens": 32,
+          "total_tokens": 1342,
           "prompt_tokens_details": {
-            "cached_tokens": 768
+            "cached_tokens": 1152
           },
-          "prompt_cache_hit_tokens": 768,
-          "prompt_cache_miss_tokens": 277
+          "prompt_cache_hit_tokens": 1152,
+          "prompt_cache_miss_tokens": 158
         }
       },
       "result": {

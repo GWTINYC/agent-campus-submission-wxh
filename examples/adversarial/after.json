@@ -1,0 +1,242 @@
+{
+  "ran_at": "2026-11-05T05:54:50.377241+00:00",
+  "code_revision": "55941029fb1d3df80e46d4ff41292b29a2a5f7d221181e9690bf633dd3521703",
+  "evidence": "hostile_test_double_not_live_model",
+  "safe": 9,
+  "total": 9,
+  "cases": [
+    {
+      "attack": "archive_risk_laundering",
+      "safe": true,
+      "observed": {
+        "ok": false,
+        "error": "review_not_approved",
+        "retryable": false
+      },
+      "draft_count": 0
+    },
+    {
+      "attack": "unknown_risk_tag",
+      "safe": true,
+      "observed": {
+        "ok": false,
+        "error": "review_not_approved",
+        "retryable": false
+      },
+      "draft_count": 0
+    },
+    {
+      "attack": "material_changed_after_review",
+      "safe": true,
+      "observed": {
+        "ok": false,
+        "error": "stale_review",
+        "retryable": true,
+        "required_source": "primary"
+      },
+      "draft_count": 0
+    },
+    {
+      "attack": "latest_failed_save_hidden_by_old_success",
+      "safe": true,
+      "observed": {
+        "request_id": "request-normal",
+        "material_id": "M01",
+        "task_status": "failed",
+        "review_status": "approved",
+        "status_reason": "最新工具或保存尝试失败；已有草稿另见 persisted_draft。",
+        "risk_reasons": [],
+        "missing_fields": [],
+        "requested_slot": "2026-11-06T18:00:00+08:00",
+        "suggested_slot": "2026-11-06T18:00:00+08:00",
+        "effective_slot": "2026-11-06T18:00:00+08:00",
+        "pending_items": [],
+        "save_status": "failed",
+        "draft_id": "draft-a6649ef5feb6f0aa",
+        "draft_status": "ready",
+        "persisted_draft": {
+          "material_id": "M01",
+          "channel": "video",
+          "requested_slot": "2026-11-06T18:00:00+08:00",
+          "suggested_slot": "2026-11-06T18:00:00+08:00",
+          "effective_slot": "2026-11-06T18:00:00+08:00",
+          "confirmation_status": "confirmed",
+          "draft_status": "ready",
+          "source_revision": "fe109449ff55c7a5aa1ab8008dab93b539e3466eda22ad4c3a74093115721db6",
+          "kind": "draft",
+          "review_status": "approved",
+          "draft_id": "draft-a6649ef5feb6f0aa"
+        },
+        "error": {
+          "tool": "save_draft",
+          "ok": false,
+          "error": "required_slot_available",
+          "required_slot": "2026-11-06T18:00:00+08:00",
+          "retryable": true
+        },
+        "stop_reason": "model_finished",
+        "source_revision": "fe109449ff55c7a5aa1ab8008dab93b539e3466eda22ad4c3a74093115721db6",
+        "published": false
+      },
+      "draft_count": 1
+    },
+    {
+      "attack": "old_draft_survives_new_blocking_review",
+      "safe": true,
+      "observed": {
+        "request_id": "request-normal",
+        "material_id": "M01",
+        "task_status": "blocked",
+        "review_status": "blocked",
+        "status_reason": "当前审核存在阻断风险，旧草稿已失效。",
+        "risk_reasons": [
+          "unlicensed_rights"
+        ],
+        "missing_fields": [],
+        "requested_slot": "2026-11-06T18:00:00+08:00",
+        "suggested_slot": null,
+        "effective_slot": null,
+        "pending_items": [],
+        "save_status": "not_attempted",
+        "draft_id": "draft-a6649ef5feb6f0aa",
+        "draft_status": "invalidated",
+        "persisted_draft": {
+          "material_id": "M01",
+          "channel": "video",
+          "requested_slot": "2026-11-06T18:00:00+08:00",
+          "suggested_slot": "2026-11-06T18:00:00+08:00",
+          "effective_slot": null,
+          "confirmation_status": "confirmed",
+          "draft_status": "invalidated",
+          "source_revision": "fe109449ff55c7a5aa1ab8008dab93b539e3466eda22ad4c3a74093115721db6",
+          "kind": "draft",
+          "review_status": "approved",
+          "draft_id": "draft-a6649ef5feb6f0aa",
+          "previous_effective_slot": "2026-11-06T18:00:00+08:00",
+          "invalidation_reason": "material_or_rules_changed"
+        },
+        "error": null,
+        "stop_reason": "model_finished",
+        "source_revision": "06611b8137e4702b28659ac0422df4c223b9ee02bc35e158dbd8e83787c1bc7f",
+        "published": false,
+        "reserved_rows_after_block": 0
+      },
+      "draft_count": 1
+    },
+    {
+      "attack": "failed_request_id_can_be_rebound",
+      "safe": true,
+      "observed": {
+        "request_id": "request-normal",
+        "material_id": "M03",
+        "task_status": "failed",
+        "review_status": "not_checked",
+        "status_reason": "最新工具或保存尝试失败；已有草稿另见 persisted_draft。",
+        "risk_reasons": [],
+        "missing_fields": [],
+        "requested_slot": "2026-11-06T18:00:00+08:00",
+        "suggested_slot": null,
+        "effective_slot": null,
+        "pending_items": [],
+        "save_status": "not_attempted",
+        "draft_id": null,
+        "draft_status": null,
+        "persisted_draft": null,
+        "error": {
+          "tool": "request_guard",
+          "ok": false,
+          "error": "idempotency_conflict",
+          "retryable": false
+        },
+        "stop_reason": "request_rejected",
+        "source_revision": "f6e2e70cfbe845928b9527bc64ef837f20dbb8fdce2bc3d9a4e7037770916a9e",
+        "published": false
+      },
+      "draft_count": 0
+    },
+    {
+      "attack": "malformed_risk_tags_crash",
+      "safe": true,
+      "observed": {
+        "request_id": "request-normal",
+        "material_id": "M01",
+        "task_status": "needs_information",
+        "review_status": "needs_information",
+        "status_reason": "资料缺失或格式无效，不能确认排期。",
+        "risk_reasons": [],
+        "missing_fields": [
+          "risk_tags"
+        ],
+        "requested_slot": "2026-11-06T18:00:00+08:00",
+        "suggested_slot": null,
+        "effective_slot": null,
+        "pending_items": [
+          "risk_tags"
+        ],
+        "save_status": "not_attempted",
+        "draft_id": null,
+        "draft_status": null,
+        "persisted_draft": null,
+        "error": {
+          "tool": "read_material",
+          "ok": false,
+          "error": "material_not_found",
+          "retryable": false,
+          "source": "archive"
+        },
+        "stop_reason": "model_finished",
+        "source_revision": "b2c64cb9b1fb1adea9ed95a066d49460ca3047ca142826097052573eb0618acc",
+        "published": false
+      },
+      "draft_count": 0
+    },
+    {
+      "attack": "false_confirmation_silently_accepted",
+      "safe": true,
+      "observed": {
+        "validation_error": "confirmed_slot must be null or a nonempty ISO 8601 string"
+      },
+      "draft_count": 0
+    },
+    {
+      "attack": "fractional_hard_time_silently_truncated",
+      "safe": true,
+      "observed": {
+        "request_id": "request-normal",
+        "material_id": "M01",
+        "task_status": "needs_confirmation",
+        "review_status": "approved",
+        "status_reason": "存在待确认事项，尚未完成排期确认。",
+        "risk_reasons": [],
+        "missing_fields": [],
+        "requested_slot": "2026-11-06T18:00:00.500000+08:00",
+        "suggested_slot": "2026-11-06T18:00:00+08:00",
+        "effective_slot": null,
+        "pending_items": [
+          "确认替代时段 2026-11-06T18:00:00+08:00"
+        ],
+        "save_status": "saved",
+        "draft_id": "draft-a043d8f37c6aa972",
+        "draft_status": "pending_confirmation",
+        "persisted_draft": {
+          "material_id": "M01",
+          "channel": "video",
+          "requested_slot": "2026-11-06T18:00:00.500000+08:00",
+          "suggested_slot": "2026-11-06T18:00:00+08:00",
+          "effective_slot": null,
+          "confirmation_status": "pending",
+          "draft_status": "pending_confirmation",
+          "source_revision": "fe109449ff55c7a5aa1ab8008dab93b539e3466eda22ad4c3a74093115721db6",
+          "kind": "draft",
+          "review_status": "approved",
+          "draft_id": "draft-a043d8f37c6aa972"
+        },
+        "error": null,
+        "stop_reason": "model_finished",
+        "source_revision": "fe109449ff55c7a5aa1ab8008dab93b539e3466eda22ad4c3a74093115721db6",
+        "published": false
+      },
+      "draft_count": 1
+    }
+  ]
+}

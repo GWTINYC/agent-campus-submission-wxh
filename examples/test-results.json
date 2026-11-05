@@ -1,8 +1,8 @@
 {
-  "ran_at": "2026-11-05T04:41:17.988794+00:00",
-  "python": "3.12.4",
+  "ran_at": "2026-11-05T05:54:28.097215+00:00",
+  "python": "3.14.0",
   "command": "python -m scripts.verify",
-  "tests_run": 27,
+  "tests_run": 44,
   "failures": 0,
   "errors": 0,
   "skipped": 0,

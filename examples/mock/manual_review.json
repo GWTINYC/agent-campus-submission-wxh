@@ -2,6 +2,7 @@
   "provider": "mock",
   "model": "deterministic-flow-simulator",
   "evidence": "flow_only",
+  "code_revision": "55941029fb1d3df80e46d4ff41292b29a2a5f7d221181e9690bf633dd3521703",
   "started_from": "immutable_user_request",
   "request": {
     "request_id": "request-manual_review",
@@ -13,13 +14,16 @@
   "max_steps": 12,
   "model_calls": 3,
   "tool_calls": 2,
+  "preflight": {
+    "ok": true
+  },
   "model_error": null,
   "result": {
     "request_id": "request-manual_review",
     "material_id": "M05",
     "task_status": "needs_confirmation",
     "review_status": "needs_review",
-    "status_reason": "存在待确认事项；尚未完成排期确认。",
+    "status_reason": "存在待确认事项，尚未完成排期确认。",
     "risk_reasons": [
       "unsupported_claim"
     ],
@@ -28,18 +32,21 @@
     "suggested_slot": null,
     "effective_slot": null,
     "pending_items": [
-      "人工复核素材风险"
+      "人工复核风险或资料冲突"
     ],
     "save_status": "not_attempted",
     "draft_id": null,
+    "draft_status": null,
+    "persisted_draft": null,
     "error": null,
     "stop_reason": "model_finished",
+    "source_revision": "70ef6313ea7dca0f9ff0b02fa22d5e72f9873a5e85d2090b9f0f987133052917",
     "published": false
   },
   "trace": [
     {
       "step": 1,
-      "at": "2026-11-05T04:41:23.656222+00:00",
+      "at": "2026-11-05T05:54:52.753738+00:00",
       "action": "read_material",
       "arguments": {
         "source": "primary",
@@ -57,13 +64,15 @@
             "unsupported_claim"
           ]
         },
-        "missing_fields": []
+        "missing_fields": [],
+        "field_conflicts": [],
+        "source_revision": "70ef6313ea7dca0f9ff0b02fa22d5e72f9873a5e85d2090b9f0f987133052917"
       },
       "next_action": "check_rules"
     },
     {
       "step": 2,
-      "at": "2026-11-05T04:41:23.656222+00:00",
+      "at": "2026-11-05T05:54:52.754916+00:00",
       "action": "check_rules",
       "arguments": {
         "source": null,
@@ -76,13 +85,14 @@
         "risk_reasons": [
           "unsupported_claim"
         ],
-        "missing_fields": []
+        "missing_fields": [],
+        "source_revision": "70ef6313ea7dca0f9ff0b02fa22d5e72f9873a5e85d2090b9f0f987133052917"
       },
       "next_action": "finish"
     },
     {
       "step": 3,
-      "at": "2026-11-05T04:41:23.656222+00:00",
+      "at": "2026-11-05T05:54:52.756405+00:00",
       "action": "finish",
       "arguments": {
         "source": null,

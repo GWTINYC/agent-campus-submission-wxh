@@ -30,11 +30,11 @@ python -m scripts.adversarial
 
 相同命令再次运行，会返回 `save_status: existing`，数据库仍只有一份草稿。`scripts.evaluate` 为每个基础案例创建独立数据库，并在同一数据库上执行重复提交和占用变更；可重复运行，不依赖上次手工运行残留的数据。
 
-Mock 的 `evidence` 是 `flow_only`，只证明流程、存储和约束，不证明真实模型决策能力。
+Mock 的 `evidence` 为 `flow_only`，用于验证流程、存储和业务约束；DeepSeek 的 `evidence` 为 `real_model`，记录模型根据工具反馈作出的决策。
 
-本轮增加九个定向攻击、3,888 条有限动作序列、实际本地 HTTP 重定向测试，以及资料冲突、未知风险、资料变化和素材提示注入场景。最新自动化、离线与真实模型结果见 [评估文档](docs/03-evaluation.md)；修复前证据也保留。这是合成案例验收，不代表生产准确率。
+验证覆盖九个定向攻击、3,888 条有限动作序列、实际本地 HTTP 重定向，以及资料冲突、未知风险、资料变化和素材提示注入场景。运行结果及修复前后对照见 [评估文档](docs/03-evaluation.md)。
 
-最终结果：**44 项测试通过；九个已复现攻击全部拦截；离线 21/21、DeepSeek 21/21 符合预期；GitHub CI 通过。** 3,888 条有限动作序列包含在自动化测试中，不重复计为真实模型案例。
+最终结果：**44 项测试通过；九个已复现攻击全部拦截；离线 21/21、DeepSeek 21/21 符合预期；GitHub CI 通过。** 自动化测试包含 3,888 条有限动作序列，真实模型评估采用 21 次合成场景运行。
 
 ## 真实模型运行
 
@@ -57,7 +57,7 @@ export DEEPSEEK_MODEL='deepseek-flash'
 python -m scripts.evaluate --provider deepseek
 ```
 
-默认 DeepSeek 地址为 `https://api.deepseek.com`。也提供 `--provider openai`，使用 `OPENAI_API_KEY`、`OPENAI_MODEL` 和可选 `OPENAI_BASE_URL`，要求服务支持 Chat Completions 的 JSON Schema 输出；这一适配器未做真实服务验证。
+默认 DeepSeek 地址为 `https://api.deepseek.com`，本次真实运行记录使用该接口。也提供 `--provider openai`，使用 `OPENAI_API_KEY`、`OPENAI_MODEL` 和可选 `OPENAI_BASE_URL`，要求服务支持 Chat Completions 的 JSON Schema 输出；该入口的验证范围为接口契约测试。
 
 模型请求出错时明确返回 `incomplete / model_error`，不会自动切换 Mock。每次调用默认超时 90 秒，可用 `--timeout 30` 调整。
 
@@ -85,11 +85,11 @@ python -m scripts.evaluate --provider deepseek
 - `needs_information` / `blocked`：信息不足或风险阻断，不新增排期。
 - `failed`：工具或保存失败；`incomplete`：无可用时段、模型错误或达到步数上限。
 - `save_status`：最新保存尝试的 `saved` / `existing` / `updated` / `failed` / `not_attempted`。最新失败不会被历史成功覆盖。
-- `persisted_draft`：数据库实际读回的草稿，保留旧内容以便核对；存在旧记录不代表最新修改保存成功。
+- `persisted_draft`：数据库实际读回的草稿，保留已持久化的内容，便于与最新保存尝试核对。
 - `draft_status`：`ready` / `pending_confirmation` / `invalidated`。资料、规则或时段使旧证明失效时，撤销确认占位，保留历史。
 - `published` 始终为 false。
 
-默认最多 12 个模型决策步（含 finish），可设 `--max-steps 1..30`。达到上限明确返回未完成；若此前确已保存，仍如实保留保存状态。CLI 对完成和待确认返回退出码 0，其余返回 2；评估脚本依据预期状态判断，因此“预期保存失败”可以是通过的验收案例。
+默认最多 12 个模型决策步（含 finish），可设 `--max-steps 1..30`。达到上限返回未完成，并保留此前的保存状态。CLI 对完成和待确认返回退出码 0，其余返回 2；评估脚本依据预期状态判断，因此“预期保存失败”可以是通过的验收案例。
 
 ## 保存与确认语义
 
@@ -97,4 +97,4 @@ python -m scripts.evaluate --provider deepseek
 
 请求 ID 在第一次模型调用前绑定，包括之后失败的请求。审核与草稿绑定素材、归档和规则的内容摘要；变化后旧草稿失效并释放占位，需重新审核。归档只能补充缺项，不能覆盖已知风险；未知风险和资料矛盾请求人工复核。
 
-合成排期按“频道 + 固定一小时起始时段”判冲突，没有跨频道资源共享、任意时长区间或真实素材内容审核。更完整的边界见评估文档。
+排期采用“频道 + 固定一小时起始时段”，审核依据为合成素材元数据和风险规则。时间区间、跨频道资源和素材内容分析的扩展方向见评估文档。

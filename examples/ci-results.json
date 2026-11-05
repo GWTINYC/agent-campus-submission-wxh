@@ -1,0 +1,67 @@
+{
+  "recorded_at": "2026-11-05T04:45:00Z",
+  "repository": "GWTINYC/agent-campus-submission-wxh",
+  "branch": "main",
+  "commit_sha": "1e7ae87f6c572e81549c68906a2ac6ea9ae87df9",
+  "url": "https://github.com/GWTINYC/agent-campus-submission-wxh/actions/runs/41969702301",
+  "jobs": [
+    {
+      "id": 127054822709,
+      "name": "verify",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 41969702301,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run python -m scripts.verify",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run python -m scripts.evaluate --provider mock",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        }
+      ]
+    }
+  ]
+}

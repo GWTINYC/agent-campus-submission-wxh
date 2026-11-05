@@ -13,6 +13,7 @@ python -m scripts.evaluate --provider deepseek
 - [自动化测试汇总](../examples/test-results.json) 与 [原始测试输出](../examples/test-results.txt)：业务不变量、恶意动作、并发、步数上限和 HTTP 适配器契约；不计为真实模型效果。
 - [离线评估汇总](../examples/mock/evaluation.json)：12 组基础输入，加 2 次重复、1 次换占用后提交，共 15 次运行。Mock 只验证流程。
 - [真实模型评估汇总](../examples/deepseek/evaluation.json)：同组输入与实际 API 输出；以该文件记录的运行时间、通过数为准。
+- [远端 CI 实际结果](../examples/ci-results.json)：提交 1e7ae87 在 GitHub Linux / Python 3.12 上的自动化测试、离线评估均成功；[对应运行](https://github.com/GWTINYC/agent-campus-submission-wxh/actions/runs/41969702301)。
 
 ## 必须验收项与实际输出
 

@@ -1,0 +1,14 @@
+{
+  "request": {
+    "request_id": "request-query_retry",
+    "material_id": "M01",
+    "requested_slot": "2026-11-06T18:00:00+08:00",
+    "hard_requirement": true
+  },
+  "world_patch": {
+    "faults": {
+      "query_slots": 1
+    }
+  },
+  "expected_task_status": "completed"
+}

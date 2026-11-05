@@ -1,0 +1,25 @@
+{
+  "request": {
+    "request_id": "request-no_slots",
+    "material_id": "M01",
+    "requested_slot": "2026-11-06T18:00:00+08:00",
+    "hard_requirement": true
+  },
+  "world_patch": {
+    "schedule": [
+      {
+        "channel": "video",
+        "slot": "2026-11-06T18:00:00+08:00"
+      },
+      {
+        "channel": "video",
+        "slot": "2026-11-06T19:00:00+08:00"
+      },
+      {
+        "channel": "video",
+        "slot": "2026-11-06T20:00:00+08:00"
+      }
+    ]
+  },
+  "expected_task_status": "incomplete"
+}

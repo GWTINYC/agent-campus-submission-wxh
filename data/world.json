@@ -1,0 +1,14 @@
+{
+  "description": "Entirely synthetic. Hourly starts represent fixed one-hour slots in a single channel; no real publication integration.",
+  "materials": {
+    "M01": {"title": "字幕功能演示", "channel": "video", "rights_status": "licensed", "risk_tags": []},
+    "M02": {"title": "缺少版权信息", "channel": "video", "risk_tags": []},
+    "M03": {"title": "归档可补齐版权信息", "channel": "video", "risk_tags": []},
+    "M04": {"title": "未获授权素材", "channel": "video", "rights_status": "unlicensed", "risk_tags": ["prohibited_content"]},
+    "M05": {"title": "含未验证宣传表述", "channel": "video", "rights_status": "licensed", "risk_tags": ["unsupported_claim"]}
+  },
+  "archive": {"M03": {"rights_status": "licensed"}},
+  "slots": ["2026-11-06T18:00:00+08:00", "2026-11-06T19:00:00+08:00", "2026-11-06T20:00:00+08:00"],
+  "schedule": [],
+  "faults": {}
+}

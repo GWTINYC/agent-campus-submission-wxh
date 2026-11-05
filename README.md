@@ -18,7 +18,7 @@ Python 标准库实现，无 Agent 框架或第三方 Python 依赖。DeepSeek �
 Python 3.11+（本地验证为 3.12.4），Git。离线入口无需密钥、配置或 pip 安装。
 
 ```sh
-git clone git@github.com:GWTINYC/agent-campus-submission-wxh.git
+git clone https://github.com/GWTINYC/agent-campus-submission-wxh.git
 cd agent-campus-submission-wxh
 git checkout q1-material-scheduling
 python -m src.cli --provider mock --input examples/inputs/normal.json --db runtime/demo.sqlite --output runtime/normal.json
@@ -29,6 +29,8 @@ python -m scripts.evaluate --provider mock
 相同命令再次运行，会返回 `save_status: existing`，数据库仍只有一份草稿。`scripts.evaluate` 为每个基础案例创建独立数据库，并在同一数据库上执行重复提交和占用变更；可重复运行，不依赖上次手工运行残留的数据。
 
 Mock 的 `evidence` 是 `flow_only`，只证明流程、存储和约束，不证明真实模型决策能力。
+
+本次本地最终验证：**27 项自动化测试通过；15 次离线运行和 15 次 DeepSeek 真实运行均符合预期**。真实运行包含正常、缺失、风险、冲突、重复、保存失败及保存时竞争；原始失败与修正记录也保留在仓库，详见评估文档。这是合成案例验收结果，不代表生产准确率。
 
 ## 真实模型运行
 

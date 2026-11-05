@@ -1,0 +1,134 @@
+{
+  "provider": "mock",
+  "model": "deterministic-flow-simulator",
+  "evidence": "flow_only",
+  "started_from": "immutable_user_request",
+  "request": {
+    "request_id": "request-save_failure",
+    "material_id": "M01",
+    "requested_slot": "2026-11-06T18:00:00+08:00",
+    "hard_requirement": true,
+    "confirmed_slot": null
+  },
+  "max_steps": 12,
+  "model_calls": 5,
+  "tool_calls": 4,
+  "model_error": null,
+  "result": {
+    "request_id": "request-save_failure",
+    "material_id": "M01",
+    "task_status": "failed",
+    "review_status": "approved",
+    "status_reason": "工具或保存失败，请查看 error 和 Trace。",
+    "risk_reasons": [],
+    "missing_fields": [],
+    "requested_slot": "2026-11-06T18:00:00+08:00",
+    "suggested_slot": "2026-11-06T18:00:00+08:00",
+    "effective_slot": null,
+    "pending_items": [],
+    "save_status": "failed",
+    "draft_id": null,
+    "error": {
+      "tool": "save_draft",
+      "ok": false,
+      "error": "save_unavailable",
+      "retryable": false
+    },
+    "stop_reason": "model_finished",
+    "published": false
+  },
+  "trace": [
+    {
+      "step": 1,
+      "at": "2026-11-05T04:41:23.744917+00:00",
+      "action": "read_material",
+      "arguments": {
+        "source": "primary",
+        "slot": null
+      },
+      "reason": "离线模拟：读取主素材",
+      "result": {
+        "ok": true,
+        "source": "primary",
+        "material": {
+          "title": "字幕功能演示",
+          "channel": "video",
+          "rights_status": "licensed",
+          "risk_tags": []
+        },
+        "missing_fields": []
+      },
+      "next_action": "check_rules"
+    },
+    {
+      "step": 2,
+      "at": "2026-11-05T04:41:23.745445+00:00",
+      "action": "check_rules",
+      "arguments": {
+        "source": null,
+        "slot": null
+      },
+      "reason": "离线模拟：核对当前元数据",
+      "result": {
+        "ok": true,
+        "status": "approved",
+        "risk_reasons": [],
+        "missing_fields": []
+      },
+      "next_action": "query_slots"
+    },
+    {
+      "step": 3,
+      "at": "2026-11-05T04:41:23.745445+00:00",
+      "action": "query_slots",
+      "arguments": {
+        "source": null,
+        "slot": null
+      },
+      "reason": "离线模拟：审核通过后查询时段",
+      "result": {
+        "ok": true,
+        "available": [
+          "2026-11-06T18:00:00+08:00",
+          "2026-11-06T19:00:00+08:00",
+          "2026-11-06T20:00:00+08:00"
+        ],
+        "occupied": [],
+        "channel": "video"
+      },
+      "next_action": "save_draft"
+    },
+    {
+      "step": 4,
+      "at": "2026-11-05T04:41:23.745445+00:00",
+      "action": "save_draft",
+      "arguments": {
+        "source": null,
+        "slot": "2026-11-06T18:00:00+08:00"
+      },
+      "reason": "离线模拟：选择原时段或待确认替代时段",
+      "result": {
+        "ok": false,
+        "error": "save_unavailable",
+        "retryable": false
+      },
+      "next_action": "finish"
+    },
+    {
+      "step": 5,
+      "at": "2026-11-05T04:41:23.746450+00:00",
+      "action": "finish",
+      "arguments": {
+        "source": null,
+        "slot": null
+      },
+      "reason": "离线模拟：工具失败，保留实际状态",
+      "result": {
+        "ok": true,
+        "message": "Final status rendered from authoritative tool state."
+      },
+      "next_action": null
+    }
+  ],
+  "database_draft_count": 0
+}

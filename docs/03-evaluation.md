@@ -16,6 +16,8 @@ python -m scripts.evaluate --provider deepseek
 
 ## 必须验收项与实际输出
 
+2026-11-05 最终本地验证：27 项自动化测试全部通过；离线 15/15、DeepSeek 15/15 符合预期。最终真实评估从北京时间 12:41:49 开始，共 74 次模型请求、59 次业务工具调用，API 报告合计 58,235 tokens（包括各次请求的重复上下文，不是去重后的文本长度）。这是合成案例回归结果，不是生产成功率。
+
 | 场景 | 输入 | 真实输出与 Trace | 核对项 |
 | --- | --- | --- | --- |
 | 正常排期 | [normal](../examples/inputs/normal.json) | [normal](../examples/deepseek/normal.json) | approved、原 18:00、saved、数据库 1 份 |

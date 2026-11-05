@@ -1,0 +1,116 @@
+{
+  "provider": "mock",
+  "model": "deterministic-flow-simulator",
+  "evidence": "flow_only",
+  "ran_at": "2026-11-05T04:41:23.542227+00:00",
+  "python": "3.12.4",
+  "cases": [
+    {
+      "case": "normal",
+      "expected": "completed",
+      "actual": "completed",
+      "passed": true,
+      "trace": "normal.json"
+    },
+    {
+      "case": "normal_repeat",
+      "expected": "existing / one draft",
+      "actual": "existing",
+      "passed": true,
+      "trace": "normal_repeat.json"
+    },
+    {
+      "case": "missing",
+      "expected": "needs_information",
+      "actual": "needs_information",
+      "passed": true,
+      "trace": "missing.json"
+    },
+    {
+      "case": "supplement",
+      "expected": "completed",
+      "actual": "completed",
+      "passed": true,
+      "trace": "supplement.json"
+    },
+    {
+      "case": "risk",
+      "expected": "blocked",
+      "actual": "blocked",
+      "passed": true,
+      "trace": "risk.json"
+    },
+    {
+      "case": "manual_review",
+      "expected": "needs_confirmation",
+      "actual": "needs_confirmation",
+      "passed": true,
+      "trace": "manual_review.json"
+    },
+    {
+      "case": "conflict",
+      "expected": "needs_confirmation",
+      "actual": "needs_confirmation",
+      "passed": true,
+      "trace": "conflict.json"
+    },
+    {
+      "case": "conflict_repeat",
+      "expected": "existing / one draft",
+      "actual": "existing",
+      "passed": true,
+      "trace": "conflict_repeat.json"
+    },
+    {
+      "case": "conflict_moved",
+      "expected": "original slot / updated / one draft",
+      "actual": "updated",
+      "passed": true,
+      "trace": "conflict_moved.json"
+    },
+    {
+      "case": "confirmed",
+      "expected": "completed",
+      "actual": "completed",
+      "passed": true,
+      "trace": "confirmed.json"
+    },
+    {
+      "case": "save_failure",
+      "expected": "failed",
+      "actual": "failed",
+      "passed": true,
+      "trace": "save_failure.json"
+    },
+    {
+      "case": "query_retry",
+      "expected": "completed",
+      "actual": "completed",
+      "passed": true,
+      "trace": "query_retry.json"
+    },
+    {
+      "case": "race",
+      "expected": "needs_confirmation",
+      "actual": "needs_confirmation",
+      "passed": true,
+      "trace": "race.json"
+    },
+    {
+      "case": "no_slots",
+      "expected": "incomplete",
+      "actual": "incomplete",
+      "passed": true,
+      "trace": "no_slots.json"
+    },
+    {
+      "case": "changed_occupancy",
+      "expected": "completed",
+      "actual": "completed",
+      "passed": true,
+      "trace": "changed_occupancy.json"
+    }
+  ],
+  "passed": 15,
+  "total": 15
+}

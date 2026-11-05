@@ -1,0 +1,204 @@
+{
+  "provider": "deepseek",
+  "model": "deepseek-flash",
+  "evidence": "real_model",
+  "started_from": "immutable_user_request",
+  "request": {
+    "request_id": "request-save_failure",
+    "material_id": "M01",
+    "requested_slot": "2026-11-06T18:00:00+08:00",
+    "hard_requirement": true,
+    "confirmed_slot": null
+  },
+  "max_steps": 12,
+  "model_calls": 5,
+  "tool_calls": 4,
+  "model_error": null,
+  "result": {
+    "request_id": "request-save_failure",
+    "material_id": "M01",
+    "task_status": "failed",
+    "review_status": "approved",
+    "status_reason": "工具或保存失败，请查看 error 和 Trace。",
+    "risk_reasons": [],
+    "missing_fields": [],
+    "requested_slot": "2026-11-06T18:00:00+08:00",
+    "suggested_slot": "2026-11-06T18:00:00+08:00",
+    "effective_slot": null,
+    "pending_items": [],
+    "save_status": "failed",
+    "draft_id": null,
+    "error": {
+      "tool": "save_draft",
+      "ok": false,
+      "error": "save_unavailable",
+      "retryable": false
+    },
+    "stop_reason": "model_finished",
+    "published": false
+  },
+  "trace": [
+    {
+      "step": 1,
+      "at": "2026-11-05T04:42:32.485955+00:00",
+      "action": "read_material",
+      "arguments": {
+        "source": "primary",
+        "slot": null
+      },
+      "reason": "Read primary material metadata first.",
+      "model_response": {
+        "id": "806e3a89-0158-46c5-90d4-3dd192c3ce04",
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 595,
+          "completion_tokens": 27,
+          "total_tokens": 622,
+          "prompt_tokens_details": {
+            "cached_tokens": 384
+          },
+          "prompt_cache_hit_tokens": 384,
+          "prompt_cache_miss_tokens": 211
+        }
+      },
+      "result": {
+        "ok": true,
+        "source": "primary",
+        "material": {
+          "title": "字幕功能演示",
+          "channel": "video",
+          "rights_status": "licensed",
+          "risk_tags": []
+        },
+        "missing_fields": []
+      },
+      "next_action": "check_rules"
+    },
+    {
+      "step": 2,
+      "at": "2026-11-05T04:42:33.300924+00:00",
+      "action": "check_rules",
+      "arguments": {
+        "source": null,
+        "slot": null
+      },
+      "reason": "Primary metadata read; need authoritative review before scheduling.",
+      "model_response": {
+        "id": "e38b53ce-1e15-4ec9-ba32-7e3def43d6d1",
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 669,
+          "completion_tokens": 31,
+          "total_tokens": 700,
+          "prompt_tokens_details": {
+            "cached_tokens": 512
+          },
+          "prompt_cache_hit_tokens": 512,
+          "prompt_cache_miss_tokens": 157
+        }
+      },
+      "result": {
+        "ok": true,
+        "status": "approved",
+        "risk_reasons": [],
+        "missing_fields": []
+      },
+      "next_action": "query_slots"
+    },
+    {
+      "step": 3,
+      "at": "2026-11-05T04:42:34.062941+00:00",
+      "action": "query_slots",
+      "arguments": {
+        "source": null,
+        "slot": null
+      },
+      "reason": "Review approved; query available times before scheduling requested slot.",
+      "model_response": {
+        "id": "ef8032e1-d99b-4d25-8232-f7669cb93969",
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 716,
+          "completion_tokens": 32,
+          "total_tokens": 748,
+          "prompt_tokens_details": {
+            "cached_tokens": 512
+          },
+          "prompt_cache_hit_tokens": 512,
+          "prompt_cache_miss_tokens": 204
+        }
+      },
+      "result": {
+        "ok": true,
+        "available": [
+          "2026-11-06T18:00:00+08:00",
+          "2026-11-06T19:00:00+08:00",
+          "2026-11-06T20:00:00+08:00"
+        ],
+        "occupied": [],
+        "channel": "video"
+      },
+      "next_action": "save_draft"
+    },
+    {
+      "step": 4,
+      "at": "2026-11-05T04:42:35.005716+00:00",
+      "action": "save_draft",
+      "arguments": {
+        "source": null,
+        "slot": "2026-11-06T18:00:00+08:00"
+      },
+      "reason": "Review approved and requested slot is available.",
+      "model_response": {
+        "id": "58594784-1715-4bdc-8e0c-20e6936baf13",
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 813,
+          "completion_tokens": 44,
+          "total_tokens": 857,
+          "prompt_tokens_details": {
+            "cached_tokens": 640
+          },
+          "prompt_cache_hit_tokens": 640,
+          "prompt_cache_miss_tokens": 173
+        }
+      },
+      "result": {
+        "ok": false,
+        "error": "save_unavailable",
+        "retryable": false
+      },
+      "next_action": "finish"
+    },
+    {
+      "step": 5,
+      "at": "2026-11-05T04:42:35.902670+00:00",
+      "action": "finish",
+      "arguments": {
+        "source": null,
+        "slot": null
+      },
+      "reason": "Save failed with nonretryable save_unavailable; stopping without publication.",
+      "model_response": {
+        "id": "571dfcb0-1094-486a-be0c-959fd68b274b",
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 873,
+          "completion_tokens": 35,
+          "total_tokens": 908,
+          "prompt_tokens_details": {
+            "cached_tokens": 640
+          },
+          "prompt_cache_hit_tokens": 640,
+          "prompt_cache_miss_tokens": 233
+        }
+      },
+      "result": {
+        "ok": true,
+        "message": "Final status rendered from authoritative tool state."
+      },
+      "next_action": null
+    }
+  ],
+  "database_draft_count": 0
+}

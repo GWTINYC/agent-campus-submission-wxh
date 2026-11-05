@@ -1,0 +1,11 @@
+{
+  "ran_at": "2026-11-05T04:41:17.988794+00:00",
+  "python": "3.12.4",
+  "command": "python -m scripts.verify",
+  "tests_run": 27,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "successful": true,
+  "scope": "Offline business invariants and HTTP adapter contract tests; not live model quality."
+}

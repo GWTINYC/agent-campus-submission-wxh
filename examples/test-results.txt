@@ -1,0 +1,32 @@
+test_all_acceptance_scenarios (test_agent.AgentTests.test_all_acceptance_scenarios) ... ok
+test_changed_occupancy_updates_same_pending_draft (test_agent.AgentTests.test_changed_occupancy_updates_same_pending_draft) ... ok
+test_concurrent_saves_cannot_reserve_same_slot (test_agent.AgentTests.test_concurrent_saves_cannot_reserve_same_slot) ... ok
+test_conflict_does_not_override_hard_requirement (test_agent.AgentTests.test_conflict_does_not_override_hard_requirement) ... ok
+test_duplicate_uses_one_draft_even_with_new_request_id (test_agent.AgentTests.test_duplicate_uses_one_draft_even_with_new_request_id) ... ok
+test_explicit_confirmation_allows_alternate_slot (test_agent.AgentTests.test_explicit_confirmation_allows_alternate_slot) ... ok
+test_limit_after_save_keeps_truthful_save_status (test_agent.AgentTests.test_limit_after_save_keeps_truthful_save_status) ... ok
+test_missing_information_is_not_invented (test_agent.AgentTests.test_missing_information_is_not_invented) ... ok
+test_model_can_finish_after_failed_supplement_before_rule_check (test_agent.AgentTests.test_model_can_finish_after_failed_supplement_before_rule_check) ... ok
+test_model_cannot_inject_confirmation (test_agent.AgentTests.test_model_cannot_inject_confirmation) ... ok
+test_model_failure_is_not_replaced_by_mock (test_agent.AgentTests.test_model_failure_is_not_replaced_by_mock) ... ok
+test_naive_time_rejected_and_offsets_normalized (test_agent.AgentTests.test_naive_time_rejected_and_offsets_normalized) ... ok
+test_normal_saves_original_slot (test_agent.AgentTests.test_normal_saves_original_slot) ... ok
+test_pending_proposal_does_not_reserve_slot (test_agent.AgentTests.test_pending_proposal_does_not_reserve_slot) ... ok
+test_race_at_save_is_rechecked_and_model_requeries (test_agent.AgentTests.test_race_at_save_is_rechecked_and_model_requeries) ... ok
+test_ready_draft_reserves_slot_against_other_material (test_agent.AgentTests.test_ready_draft_reserves_slot_against_other_material) ... ok
+test_request_id_reuse_with_changed_demand_fails (test_agent.AgentTests.test_request_id_reuse_with_changed_demand_fails) ... ok
+test_risk_blocks_even_if_model_attempts_save (test_agent.AgentTests.test_risk_blocks_even_if_model_attempts_save) ... ok
+test_save_failure_never_claims_saved (test_agent.AgentTests.test_save_failure_never_claims_saved) ... ok
+test_save_requires_review_and_availability_query (test_agent.AgentTests.test_save_requires_review_and_availability_query) ... ok
+test_step_limit_is_explicitly_incomplete (test_agent.AgentTests.test_step_limit_is_explicitly_incomplete) ... ok
+test_successful_result_survives_later_failed_save_attempt (test_agent.AgentTests.test_successful_result_survives_later_failed_save_attempt) ... ok
+test_supplement_is_rechecked_before_save (test_agent.AgentTests.test_supplement_is_rechecked_before_save) ... ok
+test_transient_tool_error_changes_action_and_preserves_review (test_agent.AgentTests.test_transient_tool_error_changes_action_and_preserves_review) ... ok
+test_api_requires_explicit_configuration (test_agent.ProviderTests.test_api_requires_explicit_configuration) ... ok
+test_blank_json_is_model_error (test_agent.ProviderTests.test_blank_json_is_model_error) ... ok
+test_deepseek_json_contract_and_observation_feedback (test_agent.ProviderTests.test_deepseek_json_contract_and_observation_feedback) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 0.136s
+
+OK

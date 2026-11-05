@@ -1,0 +1,142 @@
+{
+  "provider": "deepseek",
+  "model": "deepseek-flash",
+  "evidence": "real_model",
+  "started_from": "immutable_user_request",
+  "request": {
+    "request_id": "request-manual_review",
+    "material_id": "M05",
+    "requested_slot": "2026-11-06T18:00:00+08:00",
+    "hard_requirement": true,
+    "confirmed_slot": null
+  },
+  "max_steps": 12,
+  "model_calls": 3,
+  "tool_calls": 2,
+  "model_error": null,
+  "result": {
+    "request_id": "request-manual_review",
+    "material_id": "M05",
+    "task_status": "needs_confirmation",
+    "review_status": "needs_review",
+    "status_reason": "存在待确认事项；尚未完成排期确认。",
+    "risk_reasons": [
+      "unsupported_claim"
+    ],
+    "missing_fields": [],
+    "requested_slot": "2026-11-06T18:00:00+08:00",
+    "suggested_slot": null,
+    "effective_slot": null,
+    "pending_items": [
+      "人工复核素材风险"
+    ],
+    "save_status": "not_attempted",
+    "draft_id": null,
+    "error": null,
+    "stop_reason": "model_finished",
+    "published": false
+  },
+  "trace": [
+    {
+      "step": 1,
+      "at": "2026-11-05T04:42:12.789609+00:00",
+      "action": "read_material",
+      "arguments": {
+        "source": "primary",
+        "slot": null
+      },
+      "reason": "Read primary metadata before review.",
+      "model_response": {
+        "id": "b99806a5-b7b0-4763-9b88-ca9ffb4979ca",
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 595,
+          "completion_tokens": 27,
+          "total_tokens": 622,
+          "prompt_tokens_details": {
+            "cached_tokens": 384
+          },
+          "prompt_cache_hit_tokens": 384,
+          "prompt_cache_miss_tokens": 211
+        }
+      },
+      "result": {
+        "ok": true,
+        "source": "primary",
+        "material": {
+          "title": "含未验证宣传表述",
+          "channel": "video",
+          "rights_status": "licensed",
+          "risk_tags": [
+            "unsupported_claim"
+          ]
+        },
+        "missing_fields": []
+      },
+      "next_action": "check_rules"
+    },
+    {
+      "step": 2,
+      "at": "2026-11-05T04:42:13.732531+00:00",
+      "action": "check_rules",
+      "arguments": {
+        "source": null,
+        "slot": null
+      },
+      "reason": "Primary material read; run authoritative review before scheduling.",
+      "model_response": {
+        "id": "c1ab543b-4e6c-4627-b899-08176c3c2b40",
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 676,
+          "completion_tokens": 31,
+          "total_tokens": 707,
+          "prompt_tokens_details": {
+            "cached_tokens": 512
+          },
+          "prompt_cache_hit_tokens": 512,
+          "prompt_cache_miss_tokens": 164
+        }
+      },
+      "result": {
+        "ok": true,
+        "status": "needs_review",
+        "risk_reasons": [
+          "unsupported_claim"
+        ],
+        "missing_fields": []
+      },
+      "next_action": "finish"
+    },
+    {
+      "step": 3,
+      "at": "2026-11-05T04:42:14.451988+00:00",
+      "action": "finish",
+      "arguments": {
+        "source": null,
+        "slot": null
+      },
+      "reason": "Rule check returned needs_review, requiring human review.",
+      "model_response": {
+        "id": "ae3cc3d6-7dc5-4f5f-b2f3-1ea4d28e614c",
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 731,
+          "completion_tokens": 31,
+          "total_tokens": 762,
+          "prompt_tokens_details": {
+            "cached_tokens": 512
+          },
+          "prompt_cache_hit_tokens": 512,
+          "prompt_cache_miss_tokens": 219
+        }
+      },
+      "result": {
+        "ok": true,
+        "message": "Final status rendered from authoritative tool state."
+      },
+      "next_action": null
+    }
+  ],
+  "database_draft_count": 0
+}

@@ -1,0 +1,122 @@
+{
+  "provider": "mock",
+  "model": "deterministic-flow-simulator",
+  "evidence": "flow_only",
+  "started_from": "immutable_user_request",
+  "request": {
+    "request_id": "request-missing",
+    "material_id": "M02",
+    "requested_slot": "2026-11-06T18:00:00+08:00",
+    "hard_requirement": true,
+    "confirmed_slot": null
+  },
+  "max_steps": 12,
+  "model_calls": 4,
+  "tool_calls": 3,
+  "model_error": null,
+  "result": {
+    "request_id": "request-missing",
+    "material_id": "M02",
+    "task_status": "needs_information",
+    "review_status": "needs_information",
+    "status_reason": "素材信息不足，未保存排期。",
+    "risk_reasons": [],
+    "missing_fields": [
+      "rights_status"
+    ],
+    "requested_slot": "2026-11-06T18:00:00+08:00",
+    "suggested_slot": null,
+    "effective_slot": null,
+    "pending_items": [
+      "rights_status"
+    ],
+    "save_status": "not_attempted",
+    "draft_id": null,
+    "error": {
+      "tool": "read_material",
+      "ok": false,
+      "error": "material_not_found",
+      "retryable": false,
+      "source": "archive"
+    },
+    "stop_reason": "model_finished",
+    "published": false
+  },
+  "trace": [
+    {
+      "step": 1,
+      "at": "2026-11-05T04:41:23.591073+00:00",
+      "action": "read_material",
+      "arguments": {
+        "source": "primary",
+        "slot": null
+      },
+      "reason": "离线模拟：读取主素材",
+      "result": {
+        "ok": true,
+        "source": "primary",
+        "material": {
+          "title": "缺少版权信息",
+          "channel": "video",
+          "risk_tags": []
+        },
+        "missing_fields": [
+          "rights_status"
+        ]
+      },
+      "next_action": "check_rules"
+    },
+    {
+      "step": 2,
+      "at": "2026-11-05T04:41:23.591073+00:00",
+      "action": "check_rules",
+      "arguments": {
+        "source": null,
+        "slot": null
+      },
+      "reason": "离线模拟：核对当前元数据",
+      "result": {
+        "ok": true,
+        "status": "needs_information",
+        "risk_reasons": [],
+        "missing_fields": [
+          "rights_status"
+        ]
+      },
+      "next_action": "read_material"
+    },
+    {
+      "step": 3,
+      "at": "2026-11-05T04:41:23.591073+00:00",
+      "action": "read_material",
+      "arguments": {
+        "source": "archive",
+        "slot": null
+      },
+      "reason": "离线模拟：缺失字段，补查归档",
+      "result": {
+        "ok": false,
+        "error": "material_not_found",
+        "retryable": false,
+        "source": "archive"
+      },
+      "next_action": "finish"
+    },
+    {
+      "step": 4,
+      "at": "2026-11-05T04:41:23.591073+00:00",
+      "action": "finish",
+      "arguments": {
+        "source": null,
+        "slot": null
+      },
+      "reason": "离线模拟：工具失败，保留实际状态",
+      "result": {
+        "ok": true,
+        "message": "Final status rendered from authoritative tool state."
+      },
+      "next_action": null
+    }
+  ],
+  "database_draft_count": 0
+}
